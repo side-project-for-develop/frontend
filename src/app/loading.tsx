@@ -4,7 +4,7 @@ const loading = () => {
 
 export default loading;
 
-// 사용법
+// 동작원리
 // <Suspense fallback={<Loading/>}>
 //      <Page/>
 // </Suspense>

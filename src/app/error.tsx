@@ -10,7 +10,7 @@ const error = () => {
 
 export default error;
 
-// 사용법
+// 동작원리
 // <ErrorBoundary fallback={<Error/>}>
 //      <Page/>
 // </ErrorBoundary>
