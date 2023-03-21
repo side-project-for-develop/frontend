@@ -1,15 +1,13 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-
-    // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  // src파일안에서 app 돌릴예정이라 한줄만 남길게요.
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      // color code
+      colors: {
+        blue: '#1fb6ff',
+      },
+    },
   },
   plugins: [],
 };

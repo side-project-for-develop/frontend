@@ -1,9 +1,11 @@
-export default function Home() {
+import Link from "next/link";
+
+const Page = () => {
   return (
-    <main>
-      <div>
-        <h2 className="bg-blue-700 text-white text-3xl">helloworld</h2>
-      </div>
-    </main>
+    <div className="h-screen bg-blue flex justify-center items-center">
+      <h1 className="example">Hello World</h1>
+    </div>
   );
-}
+};
+
+export default Page;

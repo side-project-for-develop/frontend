@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    h1 {
+      @apply text-5xl;
+    }
+  }
+  
+  @layer components {
+    .example{
+        color: greenyellow;
+    }
+    
+  }
+  
+  @layer utilities {
+
+}
