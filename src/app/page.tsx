@@ -2,6 +2,7 @@
 
 import { increment } from "@/Redux/Features/exampleSlice";
 import { RootState } from "@/Redux/store";
+import SplashComponent from "@/components/SplashComponent";
 import TestComponent from "@/components/TestComponent";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,7 +17,10 @@ const Page = () => {
     //   <TestComponent />
     // </div>
 
-    <h1 className="text-lg">hello</h1>
+    // <h1 className="text-lg">hello</h1>
+    <>
+      <SplashComponent />
+    </>
   );
 };
 

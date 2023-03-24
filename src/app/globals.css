@@ -6,6 +6,18 @@
     h1 {
       @apply text-5xl;
     }
+
+
+
+      /* Scroll Hide*/
+    :root{
+      --splash-color: #D84242;
+      -ms-overflow-style: none; 
+      scrollbar-width: none; 
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
   
   @layer components {
@@ -18,3 +30,6 @@
   @layer utilities {
 
 }
+
+
+
