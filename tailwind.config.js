@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        BMHANNA: ["BM-Hanna", "Noto Sans KR", "sans-serif"],
+      },
       // color code
       colors: {
         blue: "#1fb6ff",
