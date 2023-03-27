@@ -22,8 +22,6 @@ const AuthComponent: React.FC = () => {
     pwTwo: "",
   });
 
-  console.log(loginForm);
-
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden fade-animation">
       {/* 로고 */}
@@ -35,7 +33,11 @@ const AuthComponent: React.FC = () => {
 
       {/* 로그인 - 회원가입  toggle */}
       {toggle ? (
-        <RegisterComponent toggleHandler={toggleBtnHandler} />
+        <RegisterComponent
+          toggleHandler={toggleBtnHandler}
+          registerForm={registerForm}
+          setRegisterForm={setRegisterForm}
+        />
       ) : (
         <LoginComponent
           toggleHandler={toggleBtnHandler}
