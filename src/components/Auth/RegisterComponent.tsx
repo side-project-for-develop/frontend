@@ -1,15 +1,24 @@
-"use client";
-
 import React from "react";
+import Image from "next/image";
+import Back from "@/assets/backButton_red.svg";
 
-interface LoginComponentProps {
+interface RegisterComponentProps {
   toggleHandler: () => void;
 }
 
-const LoginComponent: React.FC<LoginComponentProps> = ({ toggleHandler }) => {
+const RegisterComponent: React.FC<RegisterComponentProps> = ({
+  toggleHandler,
+}) => {
   return (
     <>
       <div className="flex flex-col">
+        {/* 뒤로가기 */}
+        <div
+          className="absolute top-4 left-4 cursor-pointer"
+          onClick={toggleHandler}
+        >
+          <Image src={Back} alt="" />
+        </div>
         {/*  inputs */}
         <div className="flex flex-col gap-[30px] mt-[98px] w-[calc(100%-64px)] ml-auto mr-auto">
           <input
@@ -22,29 +31,22 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ toggleHandler }) => {
             placeholder="패스워드를 입력해주세요"
             className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
           />
+          <input
+            type="password"
+            placeholder="패스워드를 다시한번 입력해주세요"
+            className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+          />
         </div>
 
         {/*  buttons */}
         <div className="flex gap-[16px] w-[calc(100%-64px)] mt-[34px] text-xl font-bold font-BMHANNA ml-auto mr-auto">
           <button className="bg-[#F52E2E] w-full h-[52px] rounded-lg text-white">
-            로그인
+            회원가입
           </button>
-          <button className="bg-[#EDF117] w-full h-[52px] rounded-lg">
-            카카오 로그인
-          </button>
-        </div>
-
-        {/*  direction */}
-        <div
-          className="mt-[48px] ml-[32px] text-sm cursor-pointer"
-          onClick={toggleHandler}
-        >
-          아직 회원이 아니십니까?
-          <span className="text-[#F52E2E] font-extrabold"> 회원가입</span>
         </div>
       </div>
     </>
   );
 };
 
-export default LoginComponent;
+export default RegisterComponent;

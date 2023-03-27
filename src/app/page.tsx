@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import SplashComponent from "@/components/SplashComponent";
-import LoginComponent from "@/components/Auth/LoginComponent";
+import AuthComponent from "@/components/Auth/Index";
 
 const Page = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -15,7 +15,7 @@ const Page = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return <>{showSplash ? <SplashComponent /> : <LoginComponent />}</>;
+  return <>{showSplash ? <SplashComponent /> : <AuthComponent />}</>;
 };
 
 export default Page;
