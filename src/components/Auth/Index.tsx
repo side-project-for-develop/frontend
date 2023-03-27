@@ -5,12 +5,25 @@ import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 import LoginComponent from "./LoginComponent";
 import RegisterComponent from "./RegisterComponent";
+import { LoginFormType, RegisterFormType } from "./AuthTypes";
 
 const AuthComponent: React.FC = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const toggleBtnHandler = () => {
     setToggle(!toggle);
   };
+  const [loginForm, setLoginForm] = useState<LoginFormType>({
+    id: "",
+    pw: "",
+  });
+  const [registerForm, setRegisterForm] = useState<RegisterFormType>({
+    id: "",
+    pw: "",
+    pwTwo: "",
+  });
+
+  console.log(loginForm);
+
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden fade-animation">
       {/* 로고 */}
@@ -24,7 +37,11 @@ const AuthComponent: React.FC = () => {
       {toggle ? (
         <RegisterComponent toggleHandler={toggleBtnHandler} />
       ) : (
-        <LoginComponent toggleHandler={toggleBtnHandler} />
+        <LoginComponent
+          toggleHandler={toggleBtnHandler}
+          loginForm={loginForm}
+          setLoginForm={setLoginForm}
+        />
       )}
 
       {/* 애니메이션 */}
