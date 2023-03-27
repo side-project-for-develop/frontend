@@ -15,7 +15,7 @@ const Page = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return <>{showSplash ? <SplashComponent /> : <AuthComponent />}</>;
+  return <> {showSplash ? <SplashComponent /> : <AuthComponent />} </>;
 };
 
 export default Page;

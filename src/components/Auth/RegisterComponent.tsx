@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import Back from "@/assets/backButton_red.svg";
 import { RegisterFormType } from "./AuthTypes";
@@ -14,6 +14,26 @@ const RegisterComponent: React.FC<RegisterComponentProps> = ({
   registerForm,
   setRegisterForm,
 }) => {
+  const onChangeId = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setRegisterForm({ ...registerForm, id: e.target.value });
+    },
+    [registerForm, setRegisterForm]
+  );
+
+  const onChangePw = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setRegisterForm({ ...registerForm, pw: e.target.value });
+    },
+    [registerForm, setRegisterForm]
+  );
+
+  const onChangePwTwo = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setRegisterForm({ ...registerForm, pwTwo: e.target.value });
+    },
+    [registerForm, setRegisterForm]
+  );
   return (
     <>
       <div className="flex flex-col">
@@ -30,25 +50,19 @@ const RegisterComponent: React.FC<RegisterComponentProps> = ({
             type="text"
             placeholder="이메일을 입력해주세요"
             className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-            onChange={(e) =>
-              setRegisterForm({ ...registerForm, id: e.target.value })
-            }
+            onChange={onChangeId}
           />
           <input
             type="password"
             placeholder="패스워드를 입력해주세요"
             className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-            onChange={(e) =>
-              setRegisterForm({ ...registerForm, pw: e.target.value })
-            }
+            onChange={onChangePw}
           />
           <input
             type="password"
             placeholder="패스워드를 다시한번 입력해주세요"
             className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-            onChange={(e) =>
-              setRegisterForm({ ...registerForm, pwTwo: e.target.value })
-            }
+            onChange={onChangePwTwo}
           />
         </div>
 
@@ -63,4 +77,4 @@ const RegisterComponent: React.FC<RegisterComponentProps> = ({
   );
 };
 
-export default RegisterComponent;
+export default React.memo(RegisterComponent);

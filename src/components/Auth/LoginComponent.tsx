@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import { LoginFormType } from "./AuthTypes";
 
 interface LoginComponentProps {
@@ -14,6 +14,20 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
   loginForm,
   setLoginForm,
 }) => {
+  const onChangeId = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setLoginForm({ ...loginForm, id: e.target.value });
+    },
+    [loginForm, setLoginForm]
+  );
+
+  const onChangePw = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setLoginForm({ ...loginForm, pw: e.target.value });
+    },
+    [loginForm, setLoginForm]
+  );
+
   return (
     <>
       <div className="flex flex-col">
@@ -23,13 +37,13 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
             type="text"
             placeholder="이메일을 입력해주세요"
             className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-            onChange={(e) => setLoginForm({ ...loginForm, id: e.target.value })}
+            onChange={onChangeId}
           />
           <input
             type="password"
             placeholder="패스워드를 입력해주세요"
             className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-            onChange={(e) => setLoginForm({ ...loginForm, pw: e.target.value })}
+            onChange={onChangePw}
           />
         </div>
 
@@ -56,4 +70,4 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
   );
 };
 
-export default LoginComponent;
+export default React.memo(LoginComponent);

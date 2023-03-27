@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 import LoginComponent from "./LoginComponent";
@@ -9,11 +9,6 @@ import { LoginFormType, RegisterFormType } from "./AuthTypes";
 
 const AuthComponent: React.FC = () => {
   const [toggle, setToggle] = useState<boolean>(false);
-  const toggleBtnHandler = () => {
-    setToggle(!toggle);
-    setLoginForm({ id: "", pw: "" });
-    setRegisterForm({ id: "", pw: "", pwTwo: "" });
-  };
   const [loginForm, setLoginForm] = useState<LoginFormType>({
     id: "",
     pw: "",
@@ -23,6 +18,14 @@ const AuthComponent: React.FC = () => {
     pw: "",
     pwTwo: "",
   });
+
+  console.log(loginForm);
+  // 토글 이벤트 핸들러
+  const toggleBtnHandler = useCallback(() => {
+    setToggle(!toggle);
+    setLoginForm({ id: "", pw: "" });
+    setRegisterForm({ id: "", pw: "", pwTwo: "" });
+  }, [toggle, setToggle, setLoginForm, setRegisterForm]);
 
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden fade-animation">
