@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { LoginFormType } from "./AuthTypes";
 
 interface LoginComponentProps {
@@ -14,6 +14,7 @@ const LoginComponent = ({
   loginForm,
   setLoginForm,
 }: LoginComponentProps) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
   const onChangeId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLoginForm({ ...loginForm, id: e.target.value });
@@ -27,6 +28,14 @@ const LoginComponent = ({
     },
     [loginForm, setLoginForm]
   );
+
+  useEffect(() => {
+    if (loginForm.id !== "" && loginForm.pw !== "") {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  }, [loginForm]);
 
   return (
     <>
@@ -49,7 +58,10 @@ const LoginComponent = ({
 
         {/*  buttons */}
         <div className="flex gap-[16px] w-[calc(100%-64px)] mt-[34px] text-xl font-bold font-BMHANNA ml-auto mr-auto">
-          <button className="bg-[#F52E2E] w-full h-[52px] rounded-lg text-white">
+          <button
+            className="bg-[#F52E2E] w-full h-[52px] rounded-lg text-white"
+            disabled={isButtonDisabled}
+          >
             로그인
           </button>
           <button className="bg-[#EDF117] w-full h-[52px] rounded-lg">

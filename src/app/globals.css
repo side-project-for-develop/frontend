@@ -24,16 +24,22 @@
     ::-webkit-scrollbar {
       display: none;
     }
+
+    button:disabled,
+    button[disabled]{
+    opacity: 50%;
+  }
+
+}
+  
+@layer components {
+  .example{
+      color: greenyellow;
   }
   
-  @layer components {
-    .example{
-        color: greenyellow;
-    }
-    
-  }
+}
   
-  @layer utilities {
+@layer utilities {
 
 }
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import Back from "@/assets/backButton_red.svg";
 import { RegisterFormType } from "./AuthTypes";
@@ -14,6 +14,7 @@ const RegisterComponent = ({
   registerForm,
   setRegisterForm,
 }: RegisterComponentProps) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
   const onChangeId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setRegisterForm({ ...registerForm, id: e.target.value });
@@ -34,6 +35,19 @@ const RegisterComponent = ({
     },
     [registerForm, setRegisterForm]
   );
+
+  useEffect(() => {
+    if (
+      registerForm.id !== "" &&
+      registerForm.pw !== "" &&
+      registerForm.pwTwo !== ""
+    ) {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  }, [registerForm]);
+
   return (
     <>
       <div className="flex flex-col">
@@ -68,7 +82,10 @@ const RegisterComponent = ({
 
         {/*  buttons */}
         <div className="flex gap-[16px] w-[calc(100%-64px)] mt-[34px] text-xl font-bold font-BMHANNA ml-auto mr-auto">
-          <button className="bg-[#F52E2E] w-full h-[52px] rounded-lg text-white">
+          <button
+            className="bg-[#F52E2E] w-full h-[52px] rounded-lg text-white"
+            disabled={isButtonDisabled}
+          >
             회원가입
           </button>
         </div>
