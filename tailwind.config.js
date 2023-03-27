@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        BMHANNA: ["BM-Hanna", "Noto Sans KR", "sans-serif"],
+      },
       // color code
       colors: {
         blue: "#1fb6ff",
@@ -16,6 +19,9 @@ module.exports = {
         min_md: { min: "640px" },
         min_lg: { min: "960px" },
         min_xl: { min: "1366px" },
+      },
+      boxShadow: {
+        custom: "0 0 4px 0 rgba(0, 0, 0, 0.3)",
       },
     },
   },

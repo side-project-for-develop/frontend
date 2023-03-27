@@ -2,12 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+  font-family: "BM-Hanna";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/BMHANNA_11yrs.otf");
+}
+
 @layer base {
     h1 {
       @apply text-5xl;
     }
-
-
 
       /* Scroll Hide*/
     :root{
