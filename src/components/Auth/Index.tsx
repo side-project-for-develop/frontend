@@ -11,6 +11,8 @@ const AuthComponent: React.FC = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const toggleBtnHandler = () => {
     setToggle(!toggle);
+    setLoginForm({ id: "", pw: "" });
+    setRegisterForm({ id: "", pw: "", pwTwo: "" });
   };
   const [loginForm, setLoginForm] = useState<LoginFormType>({
     id: "",
