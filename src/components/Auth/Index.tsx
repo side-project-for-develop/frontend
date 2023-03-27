@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import Logo from "@/assets/logo.svg";
