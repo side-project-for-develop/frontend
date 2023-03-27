@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 
-const SplashComponent = () => {
+const SplashComponent: React.FC = () => {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden ">
       {/* 상단 빨간 박스 */}
