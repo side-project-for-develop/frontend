@@ -9,11 +9,11 @@ interface RegisterComponentProps {
   setRegisterForm: React.Dispatch<React.SetStateAction<RegisterFormType>>;
 }
 
-const RegisterComponent: React.FC<RegisterComponentProps> = ({
+const RegisterComponent = ({
   toggleHandler,
   registerForm,
   setRegisterForm,
-}) => {
+}: RegisterComponentProps) => {
   const onChangeId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setRegisterForm({ ...registerForm, id: e.target.value });

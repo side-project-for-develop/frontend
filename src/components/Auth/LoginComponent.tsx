@@ -9,11 +9,11 @@ interface LoginComponentProps {
   setLoginForm: React.Dispatch<React.SetStateAction<LoginFormType>>;
 }
 
-const LoginComponent: React.FC<LoginComponentProps> = ({
+const LoginComponent = ({
   toggleHandler,
   loginForm,
   setLoginForm,
-}) => {
+}: LoginComponentProps) => {
   const onChangeId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLoginForm({ ...loginForm, id: e.target.value });

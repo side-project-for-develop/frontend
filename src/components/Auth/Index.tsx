@@ -7,7 +7,7 @@ import LoginComponent from "./LoginComponent";
 import RegisterComponent from "./RegisterComponent";
 import { LoginFormType, RegisterFormType } from "./AuthTypes";
 
-const AuthComponent: React.FC = () => {
+const AuthComponent = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [loginForm, setLoginForm] = useState<LoginFormType>({
     id: "",
