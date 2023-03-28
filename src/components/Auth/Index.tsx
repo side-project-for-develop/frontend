@@ -13,6 +13,7 @@ const AuthComponent = () => {
   });
   const [registerForm, setRegisterForm] = useState<RegisterFormType>({
     id: "",
+    nickName: "",
     pw: "",
     pwTwo: "",
   });
@@ -21,7 +22,7 @@ const AuthComponent = () => {
   const toggleBtnHandler = useCallback(() => {
     setToggle(!toggle);
     setLoginForm({ id: "", pw: "" });
-    setRegisterForm({ id: "", pw: "", pwTwo: "" });
+    setRegisterForm({ id: "", pw: "", pwTwo: "", nickName: "" });
   }, [toggle, setToggle, setLoginForm, setRegisterForm]);
 
   return (

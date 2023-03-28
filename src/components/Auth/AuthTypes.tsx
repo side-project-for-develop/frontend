@@ -5,4 +5,5 @@ export interface LoginFormType {
 
 export interface RegisterFormType extends LoginFormType {
   pwTwo: string;
+  nickName: string;
 }
