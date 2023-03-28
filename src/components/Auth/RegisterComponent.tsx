@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import Back from "@/assets/backButton_red.svg";
 import { RegisterFormType } from "./AuthTypes";
+import { emailCheck, nickNameCheck, passwordCheck } from "@/shared/reg";
 
 interface RegisterComponentProps {
   toggleHandler: () => void;
@@ -21,7 +22,6 @@ const RegisterComponent = ({
     },
     [registerForm, setRegisterForm]
   );
-
   const onChangeId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setRegisterForm({ ...registerForm, id: e.target.value });
@@ -48,7 +48,12 @@ const RegisterComponent = ({
       registerForm.id !== "" &&
       registerForm.pw !== "" &&
       registerForm.pwTwo !== "" &&
-      registerForm.nickName !== ""
+      registerForm.nickName !== "" &&
+      emailCheck(registerForm.id) &&
+      passwordCheck(registerForm.pw) &&
+      passwordCheck(registerForm.pwTwo) &&
+      nickNameCheck(registerForm.nickName) &&
+      registerForm.pw === registerForm.pwTwo
     ) {
       setIsButtonDisabled(false);
     } else {
@@ -68,30 +73,61 @@ const RegisterComponent = ({
         </div>
         {/*  inputs */}
         <div className="flex flex-col gap-[30px] mt-[98px] w-[calc(100%-64px)] ml-auto mr-auto">
-          <input
-            type="text"
-            placeholder="닉네임을 입력해주세요"
-            className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-            onChange={onChangeName}
-          />
-          <input
-            type="text"
-            placeholder="이메일을 입력해주세요"
-            className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-            onChange={onChangeId}
-          />
-          <input
-            type="password"
-            placeholder="패스워드를 입력해주세요"
-            className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-            onChange={onChangePw}
-          />
-          <input
-            type="password"
-            placeholder="패스워드를 다시한번 입력해주세요"
-            className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-            onChange={onChangePwTwo}
-          />
+          <div className="w-full flex flex-col">
+            <input
+              type="text"
+              placeholder="닉네임을 입력해주세요"
+              className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              onChange={onChangeName}
+            />
+            {!nickNameCheck(registerForm.nickName) &&
+              registerForm.nickName !== "" && (
+                <p className="text-xs text-red-500">
+                  2~10글자의 영문 대/소문자, 한글, 숫자만 허용합니다.
+                </p>
+              )}
+          </div>
+          <div className="w-full flex flex-col">
+            <input
+              type="text"
+              placeholder="이메일을 입력해주세요"
+              className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              onChange={onChangeId}
+            />
+            {!emailCheck(registerForm.id) && registerForm.id !== "" && (
+              <p className="text-xs text-red-500">이메일 형식만 허용합니다.</p>
+            )}
+          </div>
+          <div className="w-full flex flex-col">
+            <input
+              type="password"
+              placeholder="패스워드를 입력해주세요"
+              className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              onChange={onChangePw}
+            />
+            {!passwordCheck(registerForm.pw) && registerForm.pw !== "" && (
+              <p className="text-xs text-red-500">
+                4~20글자의 영문, 숫자, 특수문자를 모두 포함해야합니다.
+              </p>
+            )}
+          </div>
+          <div className="w-full flex flex-col">
+            <input
+              type="password"
+              placeholder="패스워드를 다시한번 입력해주세요"
+              className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              onChange={onChangePwTwo}
+            />
+            {!passwordCheck(registerForm.pwTwo) &&
+              registerForm.pwTwo !== "" && (
+                <p className="text-xs text-red-500">
+                  4~20글자의 영문, 숫자, 특수문자를 모두 포함해야합니다.
+                </p>
+              )}
+            {registerForm.pw !== registerForm.pwTwo && (
+              <p className="text-xs text-red-500">두 비밀번호가 다릅니다.</p>
+            )}
+          </div>
         </div>
 
         {/*  buttons */}
