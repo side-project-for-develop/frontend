@@ -1,27 +1,21 @@
 "use client";
 
-import { increment } from "@/Redux/Features/exampleSlice";
-import { RootState } from "@/Redux/store";
+import { useState, useEffect } from "react";
 import SplashComponent from "@/components/SplashComponent";
-import TestComponent from "@/components/TestComponent";
-import { useDispatch, useSelector } from "react-redux";
+import AuthComponent from "@/components/Auth/Index";
 
 const Page = () => {
-  const count = useSelector((state: RootState) => state.example.value);
-  const dispatch = useDispatch();
+  const [showSplash, setShowSplash] = useState(true);
 
-  return (
-    // <div className="h-screen bg-blue flex justify-center items-center flex-col">
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 3000);
 
-    //   <h1 className="example m-10">리액트 쿼리로 가져온 데이터 입니다</h1>
-    //   <TestComponent />
-    // </div>
+    return () => clearTimeout(timer);
+  }, []);
 
-    // <h1 className="text-lg">hello</h1>
-    <>
-      <SplashComponent />
-    </>
-  );
+  return <> {showSplash ? <SplashComponent /> : <AuthComponent />} </>;
 };
 
 export default Page;
