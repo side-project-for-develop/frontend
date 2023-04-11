@@ -16,13 +16,14 @@ const AuthComponent = () => {
     nickName: "",
     pw: "",
     pwTwo: "",
+    img: "",
   });
 
   // 토글 이벤트 핸들러
   const toggleBtnHandler = useCallback(() => {
     setToggle(!toggle);
     setLoginForm({ id: "", pw: "" });
-    setRegisterForm({ id: "", pw: "", pwTwo: "", nickName: "" });
+    setRegisterForm({ id: "", pw: "", pwTwo: "", nickName: "", img: "" });
   }, [toggle, setToggle, setLoginForm, setRegisterForm]);
 
   return (

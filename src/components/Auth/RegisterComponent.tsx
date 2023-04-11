@@ -16,6 +16,9 @@ const RegisterComponent = ({
   setRegisterForm,
 }: RegisterComponentProps) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+  const [previewImage, setPreviewImage] = useState<string>(
+    "https://cdn-icons-png.flaticon.com/512/338/338864.png"
+  );
   const onChangeName = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setRegisterForm({ ...registerForm, nickName: e.target.value });
@@ -43,6 +46,24 @@ const RegisterComponent = ({
     [registerForm, setRegisterForm]
   );
 
+  const onChangeImg = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files !== null) {
+        const newFile = e.target.files?.[0];
+        if (newFile) {
+          setRegisterForm({
+            ...registerForm,
+            img: URL.createObjectURL(e.target.files[0]),
+          });
+          setPreviewImage(URL.createObjectURL(e.target.files[0]));
+        }
+      }
+    },
+    [registerForm, setRegisterForm]
+  );
+
+  console.log(registerForm.img);
+
   useEffect(() => {
     if (
       registerForm.id !== "" &&
@@ -60,7 +81,6 @@ const RegisterComponent = ({
       setIsButtonDisabled(true);
     }
   }, [registerForm]);
-
   return (
     <>
       <div className="flex flex-col">
@@ -72,8 +92,29 @@ const RegisterComponent = ({
           <Image src={Back} alt="" />
         </div>
         {/*  inputs */}
-        <div className="flex flex-col gap-[30px] mt-[98px] w-[calc(100%-64px)] ml-auto mr-auto">
+        <div className="flex flex-col gap-[30px] mt-[38px] w-[calc(100%-64px)] ml-auto mr-auto">
           <div className="w-full flex flex-col">
+            <div className="flex flex-col items-center justify-center mb-4">
+              <label htmlFor="imgInput">
+                {previewImage ? (
+                  <Image
+                    src={previewImage}
+                    alt="Preview Image"
+                    width={200}
+                    height={200}
+                    className="rounded-full w-[200px] h-[200px] border border-gray-300 mb-4 cursor-pointer"
+                  />
+                ) : (
+                  <div className="w-[200px] h-[200px] rounded-full border border-gray-300 mb-4 cursor-pointer"></div>
+                )}
+              </label>
+              <input
+                type="file"
+                id="imgInput"
+                className="sr-only"
+                onChange={onChangeImg}
+              />
+            </div>
             <div className="flex justify-between">
               <input
                 type="text"
