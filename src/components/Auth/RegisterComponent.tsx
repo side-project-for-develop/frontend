@@ -74,12 +74,17 @@ const RegisterComponent = ({
         {/*  inputs */}
         <div className="flex flex-col gap-[30px] mt-[98px] w-[calc(100%-64px)] ml-auto mr-auto">
           <div className="w-full flex flex-col">
-            <input
-              type="text"
-              placeholder="닉네임을 입력해주세요"
-              className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-              onChange={onChangeName}
-            />
+            <div className="flex justify-between">
+              <input
+                type="text"
+                placeholder="닉네임을 입력해주세요"
+                className="h-[54px] w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+                onChange={onChangeName}
+              />
+              <button className="bg-[#F52E2E] w-[25%] h-[52px] rounded-lg text-white">
+                중복확인
+              </button>
+            </div>
             {!nickNameCheck(registerForm.nickName) &&
               registerForm.nickName !== "" && (
                 <p className="text-xs text-red-500">
@@ -88,12 +93,17 @@ const RegisterComponent = ({
               )}
           </div>
           <div className="w-full flex flex-col">
-            <input
-              type="text"
-              placeholder="이메일을 입력해주세요"
-              className="h-[54px] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-              onChange={onChangeId}
-            />
+            <div className="flex justify-between">
+              <input
+                type="text"
+                placeholder="이메일을 입력해주세요"
+                className="h-[54px] w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+                onChange={onChangeId}
+              />
+              <button className="bg-[#F52E2E] w-[25%] h-[52px] rounded-lg text-white">
+                중복확인
+              </button>
+            </div>
             {!emailCheck(registerForm.id) && registerForm.id !== "" && (
               <p className="text-xs text-red-500">이메일 형식만 허용합니다.</p>
             )}
