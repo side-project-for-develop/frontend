@@ -50,10 +50,13 @@ const RegisterComponent = ({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files !== null) {
         const newFile = e.target.files?.[0];
+        const formData = new FormData();
+        formData.append("file", newFile);
+        // get url from the server and give the img
         if (newFile) {
           setRegisterForm({
             ...registerForm,
-            img: URL.createObjectURL(e.target.files[0]),
+            img: "",
           });
           setPreviewImage(URL.createObjectURL(e.target.files[0]));
         }
@@ -61,8 +64,6 @@ const RegisterComponent = ({
     },
     [registerForm, setRegisterForm]
   );
-
-  console.log(registerForm.img);
 
   useEffect(() => {
     if (
