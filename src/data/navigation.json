@@ -1,0 +1,12 @@
+{
+    "navigation": [
+        {
+            "name": "Auth",
+            "path": "/"
+        },
+        {
+            "name": "Main",
+            "path": "/main"
+        }
+    ]
+}
