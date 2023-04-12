@@ -32,7 +32,7 @@ const AuthComponent = () => {
       <Image
         src={Logo}
         alt="tok tok logo"
-        className="z-10 mt-[107px] ml-auto mr-auto "
+        className="z-10 mt-24 ml-auto mr-auto "
       />
 
       {/* 로그인 - 회원가입  toggle */}
