@@ -106,7 +106,7 @@ const RegisterComponent = ({
           <Image src={Back} alt="" />
         </div>
         {/*  inputs */}
-        <div className="flex flex-col gap-7 mt-9 w-[calc(100%-4rem)] ml-auto mr-auto">
+        <div className="flex flex-col gap-7 mt-9 w-[calc(100%-4rem)] ml-auto mr-auto xsm:gap-4">
           <div className="w-full flex flex-col">
             <div className="flex flex-col items-center justify-center mb-4">
               <label htmlFor="imgInput">
@@ -114,12 +114,12 @@ const RegisterComponent = ({
                   <Image
                     src={previewImage}
                     alt="Preview Image"
-                    width={200}
-                    height={200}
-                    className="rounded-full w-52 h-52 border border-gray-300 mb-4 cursor-pointer"
+                    width={100}
+                    height={100}
+                    className="rounded-full w-52 h-52 border border-gray-300 mb-4 cursor-pointer sm:w-auto sm:h-auto"
                   />
                 ) : (
-                  <div className="w-52 h-52 rounded-full border border-gray-300 mb-4 cursor-pointer"></div>
+                  <div className="w-52 h-52 rounded-full border border-gray-300 mb-4 cursor-pointer sm:w-auto sm:h-auto"></div>
                 )}
               </label>
               <input
@@ -129,15 +129,15 @@ const RegisterComponent = ({
                 onChange={onChangeImg}
               />
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between xsm:h-10 h-14">
               <input
                 type="text"
                 placeholder="닉네임을 입력해주세요"
-                className=" h-14 w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+                className="w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500 "
                 onChange={onChangeName}
               />
               <button
-                className="h-14 bg-[#F52E2E] w-[25%] rounded-lg text-white"
+                className="bg-[#F52E2E] w-[25%] rounded-lg text-white"
                 disabled={isNameDisabled}
               >
                 중복확인
@@ -151,15 +151,15 @@ const RegisterComponent = ({
               )}
           </div>
           <div className="w-full flex flex-col">
-            <div className="flex justify-between">
+            <div className="flex justify-between  xsm:h-10 h-14">
               <input
                 type="text"
                 placeholder="이메일을 입력해주세요"
-                className="h-14 w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+                className="w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
                 onChange={onChangeId}
               />
               <button
-                className="h-14 bg-[#F52E2E] w-[25%] rounded-lg text-white"
+                className="bg-[#F52E2E] w-[25%] rounded-lg text-white"
                 disabled={isEmailDisabled}
               >
                 중복확인
@@ -169,11 +169,11 @@ const RegisterComponent = ({
               <p className="text-xs text-red-500">이메일 형식만 허용합니다.</p>
             )}
           </div>
-          <div className="w-full flex flex-col">
+          <div className="flex flex-col">
             <input
               type="password"
               placeholder="패스워드를 입력해주세요"
-              className="h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              className="xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
               onChange={onChangePw}
             />
             {!passwordCheck(registerForm.pw) && registerForm.pw !== "" && (
@@ -186,7 +186,7 @@ const RegisterComponent = ({
             <input
               type="password"
               placeholder="패스워드를 다시한번 입력해주세요"
-              className="h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              className=" xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
               onChange={onChangePwTwo}
             />
             {!passwordCheck(registerForm.pwTwo) &&
@@ -202,7 +202,7 @@ const RegisterComponent = ({
         </div>
 
         {/*  buttons */}
-        <div className="flex gap-4 w-[calc(100%-64px)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto">
+        <div className="flex gap-4 w-[calc(100%-64px)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto xsm:mt-4">
           <button
             className="h-14 bg-[#F52E2E] w-full rounded-lg text-white"
             disabled={isSubmitDisabled}

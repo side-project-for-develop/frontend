@@ -27,12 +27,12 @@ const AuthComponent = () => {
   }, [toggle, setToggle, setLoginForm, setRegisterForm]);
 
   return (
-    <div className="relative flex flex-col min-h-screen overflow-hidden fade-animation">
+    <div className="relative flex flex-col min-h-screen vh-100 overflow-hidden fade-animation">
       {/* 로고 */}
       <Image
         src={Logo}
         alt="tok tok logo"
-        className="z-10 mt-24 ml-auto mr-auto "
+        className="z-10 mt-24 ml-auto mr-auto xsm:mt-15"
       />
 
       {/* 로그인 - 회원가입  toggle */}

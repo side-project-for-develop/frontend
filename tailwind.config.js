@@ -11,6 +11,8 @@ module.exports = {
         blue: "#1fb6ff",
       },
       screens: {
+        xxsm: { max: "280px" }, // fold
+        xsm: { max: "375px" }, // se
         sm: { max: "420px" },
         md: { max: "640px" },
         lg: { max: "960px" },
