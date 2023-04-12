@@ -37,7 +37,7 @@ const LoginComponent = ({
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col xsm:text-[10px]">
         {/*  inputs */}
         <div className="flex flex-col gap-7 mt-24 w-[calc(100%-4rem)] ml-auto mr-auto">
           <input

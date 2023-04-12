@@ -27,7 +27,7 @@ const AuthComponent = () => {
   }, [toggle, setToggle, setLoginForm, setRegisterForm]);
 
   return (
-    <div className="relative flex flex-col min-h-screen vh-100 overflow-hidden fade-animation">
+    <div className="relative flex flex-col min-h-screen vh-100 overflow-hidden fade-animation xsm:text-[10px]">
       {/* 로고 */}
       <Image
         src={Logo}
