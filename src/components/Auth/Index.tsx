@@ -26,49 +26,51 @@ const AuthComponent = () => {
     setRegisterForm({ id: "", pw: "", pwTwo: "", nickName: "", img: "" });
   }, [toggle, setToggle, setLoginForm, setRegisterForm]);
 
-  return (
-    <div className="relative flex flex-col min-h-screen vh-100 overflow-hidden fade-animation xsm:text-[10px]">
-      {/* 로고 */}
-      <Image
-        src={Logo}
-        alt="tok tok logo"
-        className="z-10 mt-24 ml-auto mr-auto xsm:mt-15"
-      />
-
-      {/* 로그인 - 회원가입  toggle */}
-      {toggle ? (
-        <RegisterComponent
-          toggleHandler={toggleBtnHandler}
-          registerForm={registerForm}
-          setRegisterForm={setRegisterForm}
-        />
-      ) : (
-        <LoginComponent
-          toggleHandler={toggleBtnHandler}
-          loginForm={loginForm}
-          setLoginForm={setLoginForm}
-        />
-      )}
-
-      {/* 애니메이션 */}
-      <style jsx>{`
-        .fade-animation {
-          animation-duration: 1s;
-          animation-timing-function: ease-in-out;
-          animation-name: fade-in;
-        }
-
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
-    </div>
-  );
+  return <div className="relative flex flex-col"></div>;
 };
 
 export default AuthComponent;
+
+// return (
+//   <div className="relative flex flex-col min-h-screen vh-100 overflow-hidden fade-animation xsm:text-[10px]">
+//     {/* 로고 */}
+//     <Image
+//       src={Logo}
+//       alt="tok tok logo"
+//       className="z-10 mt-24 ml-auto mr-auto xsm:mt-15"
+//     />
+
+//     {/* 로그인 - 회원가입  toggle */}
+//     {toggle ? (
+//       <RegisterComponent
+//         toggleHandler={toggleBtnHandler}
+//         registerForm={registerForm}
+//         setRegisterForm={setRegisterForm}
+//       />
+//     ) : (
+//       <LoginComponent
+//         toggleHandler={toggleBtnHandler}
+//         loginForm={loginForm}
+//         setLoginForm={setLoginForm}
+//       />
+//     )}
+
+//     {/* 애니메이션 */}
+//     <style jsx>{`
+//       .fade-animation {
+//         animation-duration: 1s;
+//         animation-timing-function: ease-in-out;
+//         animation-name: fade-in;
+//       }
+
+//       @keyframes fade-in {
+//         from {
+//           opacity: 0;
+//         }
+//         to {
+//           opacity: 1;
+//         }
+//       }
+//     `}</style>
+//   </div>
+// );
