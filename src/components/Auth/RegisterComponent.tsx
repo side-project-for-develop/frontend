@@ -126,6 +126,7 @@ const RegisterComponent = ({
                 type="file"
                 id="imgInput"
                 className="sr-only"
+                accept=".jpg, .jpeg, .png, .gif, .bmp"
                 onChange={onChangeImg}
               />
             </div>
