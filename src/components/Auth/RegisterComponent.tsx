@@ -56,7 +56,7 @@ const RegisterComponent = ({
         if (newFile) {
           setRegisterForm({
             ...registerForm,
-            img: "",
+            img: "dd",
           });
           setPreviewImage(URL.createObjectURL(e.target.files[0]));
         }
@@ -64,13 +64,13 @@ const RegisterComponent = ({
     },
     [registerForm, setRegisterForm]
   );
-
   useEffect(() => {
     if (
       registerForm.id !== "" &&
       registerForm.pw !== "" &&
       registerForm.pwTwo !== "" &&
       registerForm.nickName !== "" &&
+      registerForm.img !== "" &&
       emailCheck(registerForm.id) &&
       passwordCheck(registerForm.pw) &&
       passwordCheck(registerForm.pwTwo) &&
