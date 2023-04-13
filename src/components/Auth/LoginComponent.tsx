@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { LoginFormType } from "./AuthTypes";
+import { Button } from "../_Materials/Button";
 
 interface LoginComponentProps {
   toggleHandler: () => void;
@@ -56,15 +57,10 @@ const LoginComponent = ({
 
         {/*  buttons */}
         <div className="flex gap-4 w-[calc(100%-4rem)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto">
-          <button
-            className="bg-[#F52E2E] w-full h-14 rounded-lg text-white xxsm:text-[14px]"
-            disabled={isButtonDisabled}
-          >
+          <Button type="red" disabled={isButtonDisabled}>
             로그인
-          </button>
-          <button className="bg-[#EDF117] w-full h-14 rounded-lg xxsm:text-[14px]">
-            카카오 로그인
-          </button>
+          </Button>
+          <Button type="yellow">카카오 로그인</Button>
         </div>
 
         {/*  direction */}

@@ -50,7 +50,6 @@ const AuthComponent = () => {
           animation-timing-function: ease-in-out;
           animation-name: fade-in;
         }
-
         @keyframes fade-in {
           from {
             opacity: 0;

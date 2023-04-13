@@ -3,6 +3,7 @@ import Image from "next/image";
 import Back from "@/assets/backButton_red.svg";
 import { RegisterFormType } from "./AuthTypes";
 import { emailCheck, nickNameCheck, passwordCheck } from "@/shared/reg";
+import { Button, FoldButton } from "../_Materials/Button";
 
 interface RegisterComponentProps {
   toggleHandler: () => void;
@@ -15,7 +16,6 @@ const RegisterComponent = ({
   registerForm,
   setRegisterForm,
 }: RegisterComponentProps) => {
-  console.log("업데이트체크");
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
   const [isNameDisabled, setIsNameDisabled] = useState<boolean>(true);
   const [isEmailDisabled, setIsEmailDisabled] = useState<boolean>(true);
@@ -138,12 +138,9 @@ const RegisterComponent = ({
                 className="fold w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500 "
                 onChange={onChangeName}
               />
-              <button
-                className="fold bg-[#F52E2E] w-[25%] rounded-lg text-white"
-                disabled={isNameDisabled}
-              >
+              <FoldButton type="red" width="w-[25%]" disabled={isNameDisabled}>
                 중복확인
-              </button>
+              </FoldButton>
             </div>
             {!nickNameCheck(registerForm.nickName) &&
               registerForm.nickName !== "" && (
@@ -160,12 +157,9 @@ const RegisterComponent = ({
                 className="fold w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
                 onChange={onChangeId}
               />
-              <button
-                className="bg-[#F52E2E] w-[25%] rounded-lg text-white fold"
-                disabled={isEmailDisabled}
-              >
+              <FoldButton type="red" width="w-[25%]" disabled={isNameDisabled}>
                 중복확인
-              </button>
+              </FoldButton>
             </div>
             {!emailCheck(registerForm.id) && registerForm.id !== "" && (
               <p className="text-xs text-red-500">이메일 형식만 허용합니다.</p>
@@ -205,12 +199,9 @@ const RegisterComponent = ({
 
         {/*  buttons */}
         <div className="flex gap-4 w-[calc(100%-64px)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto xsm:mt-4">
-          <button
-            className="h-14 bg-[#F52E2E] w-full rounded-lg text-white xxsm:text-[14px]"
-            disabled={isSubmitDisabled}
-          >
+          <Button type="red" disabled={isSubmitDisabled}>
             회원가입
-          </button>
+          </Button>
         </div>
       </div>
       <style jsx>{`
