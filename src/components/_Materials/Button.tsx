@@ -33,7 +33,7 @@ export const FoldButton = ({
   children,
   type,
   width,
-  height,
+  height = "",
   disabled = false,
 }: ButtonProps) => {
   return (
