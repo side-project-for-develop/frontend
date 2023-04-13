@@ -106,9 +106,9 @@ const RegisterComponent = ({
           <Image src={Back} alt="" />
         </div>
         {/*  inputs */}
-        <div className="flex flex-col gap-7 mt-9 w-[calc(100%-4rem)] ml-auto mr-auto xsm:gap-4 xxsm:mt-2">
+        <div className="flex flex-col gap-7 mt-9 w-[calc(100%-4rem)] ml-auto mr-auto xsm:gap-4 xsm:mt-2">
           <div className="w-full flex flex-col">
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center">
               <label htmlFor="imgInput">
                 {previewImage ? (
                   <Image
@@ -116,7 +116,7 @@ const RegisterComponent = ({
                     alt="Preview Image"
                     width={100}
                     height={100}
-                    className="rounded-full w-52 h-52 border border-gray-300 mb-4 cursor-pointer sm:w-auto sm:h-auto"
+                    className="rounded-full w-52 h-52 border border-gray-300 mb-4 cursor-pointer sm:w-24 sm:h-24"
                   />
                 ) : (
                   <div className="w-52 h-52 rounded-full border border-gray-300 mb-4 cursor-pointer sm:w-auto sm:h-auto"></div>
