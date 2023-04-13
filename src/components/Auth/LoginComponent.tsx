@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { LoginFormType } from "./AuthTypes";
 import { Button } from "../_Materials/Button";
+import { Input } from "../_Materials/Input";
 
 interface LoginComponentProps {
   toggleHandler: () => void;
@@ -14,13 +15,13 @@ const LoginComponent = ({
   setLoginForm,
 }: LoginComponentProps) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+
   const onChangeId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLoginForm({ ...loginForm, id: e.target.value });
     },
     [loginForm, setLoginForm]
   );
-
   const onChangePw = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLoginForm({ ...loginForm, pw: e.target.value });
@@ -41,16 +42,14 @@ const LoginComponent = ({
       <div className="flex flex-col xsm:text-[10px]">
         {/*  inputs */}
         <div className="flex flex-col gap-7 mt-24 w-[calc(100%-4rem)] ml-auto mr-auto">
-          <input
-            type="text"
+          <Input
             placeholder="이메일을 입력해주세요"
-            className="h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+            type="text"
             onChange={onChangeId}
           />
-          <input
-            type="password"
+          <Input
             placeholder="패스워드를 입력해주세요"
-            className="h-14  rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+            type="password"
             onChange={onChangePw}
           />
         </div>
@@ -63,7 +62,7 @@ const LoginComponent = ({
           <Button type="yellow">카카오 로그인</Button>
         </div>
 
-        {/*  direction */}
+        {/*  Sign Up */}
         <div
           className="mt-12 ml-8 text-sm cursor-pointer"
           onClick={toggleHandler}

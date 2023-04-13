@@ -4,6 +4,7 @@ import Back from "@/assets/backButton_red.svg";
 import { RegisterFormType } from "./AuthTypes";
 import { emailCheck, nickNameCheck, passwordCheck } from "@/shared/reg";
 import { Button, FoldButton } from "../_Materials/Button";
+import { Input } from "../_Materials/Input";
 
 interface RegisterComponentProps {
   toggleHandler: () => void;
@@ -22,6 +23,7 @@ const RegisterComponent = ({
   const [previewImage, setPreviewImage] = useState<string>(
     "https://cdn-icons-png.flaticon.com/512/338/338864.png"
   );
+
   const onChangeName = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setRegisterForm({ ...registerForm, nickName: e.target.value });
@@ -34,21 +36,18 @@ const RegisterComponent = ({
     },
     [registerForm, setRegisterForm]
   );
-
   const onChangePw = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setRegisterForm({ ...registerForm, pw: e.target.value });
     },
     [registerForm, setRegisterForm]
   );
-
   const onChangePwTwo = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setRegisterForm({ ...registerForm, pwTwo: e.target.value });
     },
     [registerForm, setRegisterForm]
   );
-
   const onChangeImg = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files !== null) {
@@ -67,6 +66,7 @@ const RegisterComponent = ({
     },
     [registerForm, setRegisterForm]
   );
+
   useEffect(() => {
     if (
       registerForm.id !== "" &&
@@ -107,8 +107,9 @@ const RegisterComponent = ({
           <Image src={Back} alt="" />
         </div>
         {/*  inputs */}
-        <div className="flex flex-col gap-7 mt-9 w-[calc(100%-4rem)] ml-auto mr-auto xsm:gap-4 xsm:mt-2">
+        <div className="flex flex-col gap-7 mt-4 w-[calc(100%-4rem)] ml-auto mr-auto xsm:gap-4 xsm:mt-2">
           <div className="w-full flex flex-col">
+            {/* 이미지 */}
             <div className="flex flex-col items-center">
               <label htmlFor="imgInput">
                 {previewImage ? (
@@ -131,30 +132,40 @@ const RegisterComponent = ({
                 onChange={onChangeImg}
               />
             </div>
-            <div className="flex justify-between xsm:h-10 h-14">
-              <input
-                type="text"
-                placeholder="닉네임을 입력해주세요"
-                className="fold w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500 "
-                onChange={onChangeName}
-              />
-              <FoldButton type="red" width="w-[25%]" disabled={isNameDisabled}>
-                중복확인
-              </FoldButton>
+            {/* 닉네임 */}
+            <div className="w-full flex flex-col">
+              <div className="flex justify-between xsm:h-10 h-14">
+                <Input
+                  placeholder="닉네임을 입력해주세요"
+                  type="text"
+                  style="sub"
+                  width="w-[70%]"
+                  onChange={onChangeName}
+                />
+                <FoldButton
+                  type="red"
+                  width="w-[25%]"
+                  disabled={isNameDisabled}
+                >
+                  중복확인
+                </FoldButton>
+              </div>
+              {!nickNameCheck(registerForm.nickName) &&
+                registerForm.nickName !== "" && (
+                  <p className="text-xs text-red-500">
+                    2~10글자의 영문 대/소문자, 한글, 숫자만 허용합니다.
+                  </p>
+                )}
             </div>
-            {!nickNameCheck(registerForm.nickName) &&
-              registerForm.nickName !== "" && (
-                <p className="text-xs text-red-500">
-                  2~10글자의 영문 대/소문자, 한글, 숫자만 허용합니다.
-                </p>
-              )}
           </div>
+          {/* 이메일 */}
           <div className="w-full flex flex-col">
             <div className="flex justify-between  xsm:h-10 h-14">
-              <input
-                type="text"
+              <Input
                 placeholder="이메일을 입력해주세요"
-                className="fold w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+                type="text"
+                style="sub"
+                width="w-[70%]"
                 onChange={onChangeId}
               />
               <FoldButton type="red" width="w-[25%]" disabled={isNameDisabled}>
@@ -165,11 +176,13 @@ const RegisterComponent = ({
               <p className="text-xs text-red-500">이메일 형식만 허용합니다.</p>
             )}
           </div>
+          {/* 비밀번호 1 */}
           <div className="flex flex-col">
-            <input
-              type="password"
+            <Input
               placeholder="패스워드를 입력해주세요"
-              className="fold xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              type="password"
+              style="sub"
+              height="xsm:h-10 h-14"
               onChange={onChangePw}
             />
             {!passwordCheck(registerForm.pw) && registerForm.pw !== "" && (
@@ -178,11 +191,13 @@ const RegisterComponent = ({
               </p>
             )}
           </div>
+          {/* 비밀번호 2 */}
           <div className="w-full flex flex-col">
-            <input
-              type="password"
+            <Input
               placeholder="패스워드를 다시한번 입력해주세요"
-              className="fold xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              type="password"
+              style="sub"
+              height="xsm:h-10 h-14"
               onChange={onChangePwTwo}
             />
             {!passwordCheck(registerForm.pwTwo) &&
@@ -196,7 +211,6 @@ const RegisterComponent = ({
             )}
           </div>
         </div>
-
         {/*  buttons */}
         <div className="flex gap-4 w-[calc(100%-64px)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto xsm:mt-4">
           <Button type="red" disabled={isSubmitDisabled}>
@@ -204,13 +218,6 @@ const RegisterComponent = ({
           </Button>
         </div>
       </div>
-      <style jsx>{`
-        @media (max-width: 280px) {
-          .fold {
-            font-size: 10px;
-          }
-        }
-      `}</style>
     </>
   );
 };

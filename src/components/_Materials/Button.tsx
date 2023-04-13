@@ -10,7 +10,7 @@ interface ButtonProps {
 }
 
 const BUTTON_CLASSES = {
-  red: "bg-[#F52E2E] rounded-lg text-white xxsm:text-[14px]",
+  red: "bg-[#F52E2E] rounded-lg text-white xxsm:text-[16px]",
   yellow: "bg-[#EDF117] rounded-lg xxsm:text-[14px]",
 };
 
@@ -38,7 +38,7 @@ export const FoldButton = ({
 }: ButtonProps) => {
   return (
     <Button type={type} disabled={disabled} width={width} height={height}>
-      <span className="xxsm:text-[10px]">{children}</span>
+      <span className="xxsm:text-[11px]">{children}</span>
     </Button>
   );
 };
