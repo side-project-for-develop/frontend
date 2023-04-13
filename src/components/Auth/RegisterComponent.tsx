@@ -106,9 +106,9 @@ const RegisterComponent = ({
           <Image src={Back} alt="" />
         </div>
         {/*  inputs */}
-        <div className="flex flex-col gap-7 mt-9 w-[calc(100%-4rem)] ml-auto mr-auto xsm:gap-4">
+        <div className="flex flex-col gap-7 mt-9 w-[calc(100%-4rem)] ml-auto mr-auto xsm:gap-4 xxsm:mt-2">
           <div className="w-full flex flex-col">
-            <div className="flex flex-col items-center justify-center mb-4">
+            <div className="flex flex-col items-center justify-center">
               <label htmlFor="imgInput">
                 {previewImage ? (
                   <Image
@@ -134,11 +134,11 @@ const RegisterComponent = ({
               <input
                 type="text"
                 placeholder="닉네임을 입력해주세요"
-                className="w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500 "
+                className="fold w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500 "
                 onChange={onChangeName}
               />
               <button
-                className="bg-[#F52E2E] w-[25%] rounded-lg text-white"
+                className="fold bg-[#F52E2E] w-[25%] rounded-lg text-white"
                 disabled={isNameDisabled}
               >
                 중복확인
@@ -156,11 +156,11 @@ const RegisterComponent = ({
               <input
                 type="text"
                 placeholder="이메일을 입력해주세요"
-                className="w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+                className="fold w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
                 onChange={onChangeId}
               />
               <button
-                className="bg-[#F52E2E] w-[25%] rounded-lg text-white"
+                className="bg-[#F52E2E] w-[25%] rounded-lg text-white fold"
                 disabled={isEmailDisabled}
               >
                 중복확인
@@ -174,7 +174,7 @@ const RegisterComponent = ({
             <input
               type="password"
               placeholder="패스워드를 입력해주세요"
-              className="xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              className="fold xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
               onChange={onChangePw}
             />
             {!passwordCheck(registerForm.pw) && registerForm.pw !== "" && (
@@ -187,7 +187,7 @@ const RegisterComponent = ({
             <input
               type="password"
               placeholder="패스워드를 다시한번 입력해주세요"
-              className=" xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
+              className="fold xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
               onChange={onChangePwTwo}
             />
             {!passwordCheck(registerForm.pwTwo) &&
@@ -205,13 +205,20 @@ const RegisterComponent = ({
         {/*  buttons */}
         <div className="flex gap-4 w-[calc(100%-64px)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto xsm:mt-4">
           <button
-            className="h-14 bg-[#F52E2E] w-full rounded-lg text-white"
+            className="h-14 bg-[#F52E2E] w-full rounded-lg text-white xxsm:text-[14px]"
             disabled={isSubmitDisabled}
           >
             회원가입
           </button>
         </div>
       </div>
+      <style jsx>{`
+        @media (max-width: 280px) {
+          .fold {
+            font-size: 10px;
+          }
+        }
+      `}</style>
     </>
   );
 };
