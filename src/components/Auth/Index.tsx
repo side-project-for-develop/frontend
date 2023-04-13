@@ -18,7 +18,6 @@ const AuthComponent = () => {
     pwTwo: "",
     img: "",
   });
-
   // 토글 이벤트 핸들러
   const toggleBtnHandler = useCallback(() => {
     setToggle(!toggle);
@@ -50,7 +49,6 @@ const AuthComponent = () => {
           animation-timing-function: ease-in-out;
           animation-name: fade-in;
         }
-
         @keyframes fade-in {
           from {
             opacity: 0;

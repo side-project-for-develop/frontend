@@ -3,6 +3,9 @@ import Image from "next/image";
 import Back from "@/assets/backButton_red.svg";
 import { RegisterFormType } from "./AuthTypes";
 import { emailCheck, nickNameCheck, passwordCheck } from "@/shared/reg";
+import { Button, FoldButton } from "../_Materials/Button";
+import { Input } from "../_Materials/Input";
+import Str from "@/data/string.json";
 
 interface RegisterComponentProps {
   toggleHandler: () => void;
@@ -15,40 +18,24 @@ const RegisterComponent = ({
   registerForm,
   setRegisterForm,
 }: RegisterComponentProps) => {
-  console.log("업데이트체크");
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
   const [isNameDisabled, setIsNameDisabled] = useState<boolean>(true);
   const [isEmailDisabled, setIsEmailDisabled] = useState<boolean>(true);
   const [previewImage, setPreviewImage] = useState<string>(
     "https://cdn-icons-png.flaticon.com/512/338/338864.png"
   );
-  const onChangeName = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setRegisterForm({ ...registerForm, nickName: e.target.value });
-    },
-    [registerForm, setRegisterForm]
-  );
-  const onChangeId = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setRegisterForm({ ...registerForm, id: e.target.value });
-    },
-    [registerForm, setRegisterForm]
-  );
 
-  const onChangePw = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setRegisterForm({ ...registerForm, pw: e.target.value });
-    },
-    [registerForm, setRegisterForm]
+  const onChangeForm = useCallback(
+    (key: keyof RegisterFormType) =>
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setRegisterForm((prevState) => ({
+          ...prevState,
+          [key]: value,
+        }));
+      },
+    [setRegisterForm]
   );
-
-  const onChangePwTwo = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setRegisterForm({ ...registerForm, pwTwo: e.target.value });
-    },
-    [registerForm, setRegisterForm]
-  );
-
   const onChangeImg = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files !== null) {
@@ -68,7 +55,7 @@ const RegisterComponent = ({
     [registerForm, setRegisterForm]
   );
   useEffect(() => {
-    if (
+    const isFormValid =
       registerForm.id !== "" &&
       registerForm.pw !== "" &&
       registerForm.pwTwo !== "" &&
@@ -78,22 +65,13 @@ const RegisterComponent = ({
       passwordCheck(registerForm.pw) &&
       passwordCheck(registerForm.pwTwo) &&
       nickNameCheck(registerForm.nickName) &&
-      registerForm.pw === registerForm.pwTwo
-    ) {
-      setIsSubmitDisabled(false);
-    } else {
-      setIsSubmitDisabled(true);
-    }
-    if (registerForm.id !== "") {
-      setIsEmailDisabled(false);
-    } else {
-      setIsEmailDisabled(true);
-    }
-    if (registerForm.nickName !== "") {
-      setIsNameDisabled(false);
-    } else {
-      setIsNameDisabled(true);
-    }
+      registerForm.pw === registerForm.pwTwo;
+
+    setIsSubmitDisabled(!isFormValid);
+    setIsEmailDisabled(registerForm.id === "" || !emailCheck(registerForm.id));
+    setIsNameDisabled(
+      registerForm.nickName === "" || !nickNameCheck(registerForm.nickName)
+    );
   }, [registerForm]);
 
   return (
@@ -107,8 +85,9 @@ const RegisterComponent = ({
           <Image src={Back} alt="" />
         </div>
         {/*  inputs */}
-        <div className="flex flex-col gap-7 mt-9 w-[calc(100%-4rem)] ml-auto mr-auto xsm:gap-4 xsm:mt-2">
+        <div className="flex flex-col gap-7 mt-4 w-[calc(100%-4rem)] ml-auto mr-auto xsm:gap-4 xsm:mt-2">
           <div className="w-full flex flex-col">
+            {/* 이미지 */}
             <div className="flex flex-col items-center">
               <label htmlFor="imgInput">
                 {previewImage ? (
@@ -131,52 +110,58 @@ const RegisterComponent = ({
                 onChange={onChangeImg}
               />
             </div>
-            <div className="flex justify-between xsm:h-10 h-14">
-              <input
-                type="text"
-                placeholder="닉네임을 입력해주세요"
-                className="fold w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500 "
-                onChange={onChangeName}
-              />
-              <button
-                className="fold bg-[#F52E2E] w-[25%] rounded-lg text-white"
-                disabled={isNameDisabled}
-              >
-                중복확인
-              </button>
+            {/* 닉네임 */}
+            <div className="w-full flex flex-col">
+              <div className="flex justify-between xsm:h-10 h-14">
+                <Input
+                  placeholder={Str.auth[0].content}
+                  type="text"
+                  style="sub"
+                  width="w-[70%]"
+                  onChange={onChangeForm("nickName")}
+                />
+                <FoldButton
+                  type="red"
+                  width="w-[25%]"
+                  disabled={isNameDisabled}
+                >
+                  중복확인
+                </FoldButton>
+              </div>
+              {!nickNameCheck(registerForm.nickName) &&
+                registerForm.nickName !== "" && (
+                  <p className="text-xs text-red-500">
+                    2~10글자의 영문 대/소문자, 한글, 숫자만 허용합니다.
+                  </p>
+                )}
             </div>
-            {!nickNameCheck(registerForm.nickName) &&
-              registerForm.nickName !== "" && (
-                <p className="text-xs text-red-500">
-                  2~10글자의 영문 대/소문자, 한글, 숫자만 허용합니다.
-                </p>
-              )}
           </div>
+          {/* 이메일 */}
           <div className="w-full flex flex-col">
             <div className="flex justify-between  xsm:h-10 h-14">
-              <input
+              <Input
+                placeholder={Str.auth[1].content}
                 type="text"
-                placeholder="이메일을 입력해주세요"
-                className="fold w-[70%] rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-                onChange={onChangeId}
+                style="sub"
+                width="w-[70%]"
+                onChange={onChangeForm("id")}
               />
-              <button
-                className="bg-[#F52E2E] w-[25%] rounded-lg text-white fold"
-                disabled={isEmailDisabled}
-              >
+              <FoldButton type="red" width="w-[25%]" disabled={isEmailDisabled}>
                 중복확인
-              </button>
+              </FoldButton>
             </div>
             {!emailCheck(registerForm.id) && registerForm.id !== "" && (
               <p className="text-xs text-red-500">이메일 형식만 허용합니다.</p>
             )}
           </div>
+          {/* 비밀번호 1 */}
           <div className="flex flex-col">
-            <input
+            <Input
+              placeholder={Str.auth[2].content}
               type="password"
-              placeholder="패스워드를 입력해주세요"
-              className="fold xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-              onChange={onChangePw}
+              style="sub"
+              height="xsm:h-10 h-14"
+              onChange={onChangeForm("pw")}
             />
             {!passwordCheck(registerForm.pw) && registerForm.pw !== "" && (
               <p className="text-xs text-red-500">
@@ -184,12 +169,14 @@ const RegisterComponent = ({
               </p>
             )}
           </div>
+          {/* 비밀번호 2 */}
           <div className="w-full flex flex-col">
-            <input
+            <Input
+              placeholder={Str.auth[3].content}
               type="password"
-              placeholder="패스워드를 다시한번 입력해주세요"
-              className="fold xsm:h-10 h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
-              onChange={onChangePwTwo}
+              style="sub"
+              height="xsm:h-10 h-14"
+              onChange={onChangeForm("pwTwo")}
             />
             {!passwordCheck(registerForm.pwTwo) &&
               registerForm.pwTwo !== "" && (
@@ -202,24 +189,13 @@ const RegisterComponent = ({
             )}
           </div>
         </div>
-
         {/*  buttons */}
         <div className="flex gap-4 w-[calc(100%-64px)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto xsm:mt-4">
-          <button
-            className="h-14 bg-[#F52E2E] w-full rounded-lg text-white xxsm:text-[14px]"
-            disabled={isSubmitDisabled}
-          >
+          <Button type="red" disabled={isSubmitDisabled}>
             회원가입
-          </button>
+          </Button>
         </div>
       </div>
-      <style jsx>{`
-        @media (max-width: 280px) {
-          .fold {
-            font-size: 10px;
-          }
-        }
-      `}</style>
     </>
   );
 };

@@ -1,5 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { LoginFormType } from "./AuthTypes";
+import { Button } from "../_Materials/Button";
+import { Input } from "../_Materials/Input";
+import Str from "@/data/string.json";
 
 interface LoginComponentProps {
   toggleHandler: () => void;
@@ -13,13 +16,13 @@ const LoginComponent = ({
   setLoginForm,
 }: LoginComponentProps) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+
   const onChangeId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLoginForm({ ...loginForm, id: e.target.value });
     },
     [loginForm, setLoginForm]
   );
-
   const onChangePw = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLoginForm({ ...loginForm, pw: e.target.value });
@@ -40,34 +43,27 @@ const LoginComponent = ({
       <div className="flex flex-col xsm:text-[10px]">
         {/*  inputs */}
         <div className="flex flex-col gap-7 mt-24 w-[calc(100%-4rem)] ml-auto mr-auto">
-          <input
+          <Input
+            placeholder={Str.auth[1].content}
             type="text"
-            placeholder="이메일을 입력해주세요"
-            className="h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
             onChange={onChangeId}
           />
-          <input
+          <Input
+            placeholder={Str.auth[2].content}
             type="password"
-            placeholder="패스워드를 입력해주세요"
-            className="h-14  rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500"
             onChange={onChangePw}
           />
         </div>
 
         {/*  buttons */}
         <div className="flex gap-4 w-[calc(100%-4rem)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto">
-          <button
-            className="bg-[#F52E2E] w-full h-14 rounded-lg text-white xxsm:text-[14px]"
-            disabled={isButtonDisabled}
-          >
+          <Button type="red" disabled={isButtonDisabled}>
             로그인
-          </button>
-          <button className="bg-[#EDF117] w-full h-14 rounded-lg xxsm:text-[14px]">
-            카카오 로그인
-          </button>
+          </Button>
+          <Button type="yellow">카카오 로그인</Button>
         </div>
 
-        {/*  direction */}
+        {/*  Sign Up */}
         <div
           className="mt-12 ml-8 text-sm cursor-pointer"
           onClick={toggleHandler}
