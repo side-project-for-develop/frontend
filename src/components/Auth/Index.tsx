@@ -18,7 +18,6 @@ const AuthComponent = () => {
     pwTwo: "",
     img: "",
   });
-
   // 토글 이벤트 핸들러
   const toggleBtnHandler = useCallback(() => {
     setToggle(!toggle);

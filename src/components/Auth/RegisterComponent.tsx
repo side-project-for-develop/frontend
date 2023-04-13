@@ -5,6 +5,7 @@ import { RegisterFormType } from "./AuthTypes";
 import { emailCheck, nickNameCheck, passwordCheck } from "@/shared/reg";
 import { Button, FoldButton } from "../_Materials/Button";
 import { Input } from "../_Materials/Input";
+import Str from "@/data/string.json";
 
 interface RegisterComponentProps {
   toggleHandler: () => void;
@@ -24,29 +25,16 @@ const RegisterComponent = ({
     "https://cdn-icons-png.flaticon.com/512/338/338864.png"
   );
 
-  const onChangeName = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setRegisterForm({ ...registerForm, nickName: e.target.value });
-    },
-    [registerForm, setRegisterForm]
-  );
-  const onChangeId = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setRegisterForm({ ...registerForm, id: e.target.value });
-    },
-    [registerForm, setRegisterForm]
-  );
-  const onChangePw = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setRegisterForm({ ...registerForm, pw: e.target.value });
-    },
-    [registerForm, setRegisterForm]
-  );
-  const onChangePwTwo = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setRegisterForm({ ...registerForm, pwTwo: e.target.value });
-    },
-    [registerForm, setRegisterForm]
+  const onChangeForm = useCallback(
+    (key: keyof RegisterFormType) =>
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setRegisterForm((prevState) => ({
+          ...prevState,
+          [key]: value,
+        }));
+      },
+    [setRegisterForm]
   );
   const onChangeImg = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,9 +54,8 @@ const RegisterComponent = ({
     },
     [registerForm, setRegisterForm]
   );
-
   useEffect(() => {
-    if (
+    const isFormValid =
       registerForm.id !== "" &&
       registerForm.pw !== "" &&
       registerForm.pwTwo !== "" &&
@@ -78,22 +65,13 @@ const RegisterComponent = ({
       passwordCheck(registerForm.pw) &&
       passwordCheck(registerForm.pwTwo) &&
       nickNameCheck(registerForm.nickName) &&
-      registerForm.pw === registerForm.pwTwo
-    ) {
-      setIsSubmitDisabled(false);
-    } else {
-      setIsSubmitDisabled(true);
-    }
-    if (registerForm.id !== "") {
-      setIsEmailDisabled(false);
-    } else {
-      setIsEmailDisabled(true);
-    }
-    if (registerForm.nickName !== "") {
-      setIsNameDisabled(false);
-    } else {
-      setIsNameDisabled(true);
-    }
+      registerForm.pw === registerForm.pwTwo;
+
+    setIsSubmitDisabled(!isFormValid);
+    setIsEmailDisabled(registerForm.id === "" || !emailCheck(registerForm.id));
+    setIsNameDisabled(
+      registerForm.nickName === "" || !nickNameCheck(registerForm.nickName)
+    );
   }, [registerForm]);
 
   return (
@@ -136,11 +114,11 @@ const RegisterComponent = ({
             <div className="w-full flex flex-col">
               <div className="flex justify-between xsm:h-10 h-14">
                 <Input
-                  placeholder="닉네임을 입력해주세요"
+                  placeholder={Str.auth[0].content}
                   type="text"
                   style="sub"
                   width="w-[70%]"
-                  onChange={onChangeName}
+                  onChange={onChangeForm("nickName")}
                 />
                 <FoldButton
                   type="red"
@@ -162,13 +140,13 @@ const RegisterComponent = ({
           <div className="w-full flex flex-col">
             <div className="flex justify-between  xsm:h-10 h-14">
               <Input
-                placeholder="이메일을 입력해주세요"
+                placeholder={Str.auth[1].content}
                 type="text"
                 style="sub"
                 width="w-[70%]"
-                onChange={onChangeId}
+                onChange={onChangeForm("id")}
               />
-              <FoldButton type="red" width="w-[25%]" disabled={isNameDisabled}>
+              <FoldButton type="red" width="w-[25%]" disabled={isEmailDisabled}>
                 중복확인
               </FoldButton>
             </div>
@@ -179,11 +157,11 @@ const RegisterComponent = ({
           {/* 비밀번호 1 */}
           <div className="flex flex-col">
             <Input
-              placeholder="패스워드를 입력해주세요"
+              placeholder={Str.auth[2].content}
               type="password"
               style="sub"
               height="xsm:h-10 h-14"
-              onChange={onChangePw}
+              onChange={onChangeForm("pw")}
             />
             {!passwordCheck(registerForm.pw) && registerForm.pw !== "" && (
               <p className="text-xs text-red-500">
@@ -194,11 +172,11 @@ const RegisterComponent = ({
           {/* 비밀번호 2 */}
           <div className="w-full flex flex-col">
             <Input
-              placeholder="패스워드를 다시한번 입력해주세요"
+              placeholder={Str.auth[3].content}
               type="password"
               style="sub"
               height="xsm:h-10 h-14"
-              onChange={onChangePwTwo}
+              onChange={onChangeForm("pwTwo")}
             />
             {!passwordCheck(registerForm.pwTwo) &&
               registerForm.pwTwo !== "" && (

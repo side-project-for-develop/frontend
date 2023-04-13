@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { LoginFormType } from "./AuthTypes";
 import { Button } from "../_Materials/Button";
 import { Input } from "../_Materials/Input";
+import Str from "@/data/string.json";
 
 interface LoginComponentProps {
   toggleHandler: () => void;
@@ -43,12 +44,12 @@ const LoginComponent = ({
         {/*  inputs */}
         <div className="flex flex-col gap-7 mt-24 w-[calc(100%-4rem)] ml-auto mr-auto">
           <Input
-            placeholder="이메일을 입력해주세요"
+            placeholder={Str.auth[1].content}
             type="text"
             onChange={onChangeId}
           />
           <Input
-            placeholder="패스워드를 입력해주세요"
+            placeholder={Str.auth[2].content}
             type="password"
             onChange={onChangePw}
           />
