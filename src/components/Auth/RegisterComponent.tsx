@@ -15,6 +15,7 @@ const RegisterComponent = ({
   registerForm,
   setRegisterForm,
 }: RegisterComponentProps) => {
+  console.log("업데이트체크");
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
   const [isNameDisabled, setIsNameDisabled] = useState<boolean>(true);
   const [isEmailDisabled, setIsEmailDisabled] = useState<boolean>(true);
