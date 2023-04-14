@@ -6,36 +6,38 @@ import { emailCheck, nickNameCheck, passwordCheck } from "@/shared/reg";
 import { Button, FoldButton } from "../_Materials/Button";
 import { Input } from "../_Materials/Input";
 import Str from "@/data/string.json";
+import { useInput } from "@/hooks/useInput";
 
 interface RegisterComponentProps {
   toggleHandler: () => void;
-  registerForm: RegisterFormType;
+  regiForm: RegisterFormType;
   setRegisterForm: React.Dispatch<React.SetStateAction<RegisterFormType>>;
 }
 
 const RegisterComponent = ({
   toggleHandler,
-  registerForm,
+  regiForm,
   setRegisterForm,
 }: RegisterComponentProps) => {
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
-  const [isNameDisabled, setIsNameDisabled] = useState<boolean>(true);
-  const [isEmailDisabled, setIsEmailDisabled] = useState<boolean>(true);
+  const [id, onChangeId, isIdDisabled] = useInput(regiForm.id, emailCheck);
+  const [pw, onChangePw, isPwDisabled] = useInput(regiForm.pw, passwordCheck);
+  const [pwTwo, onChangePwTwo, isPwTwoDisabled] = useInput("", passwordCheck);
+  const [nickName, onChangeNickname, isNicknameDisabled] = useInput(
+    regiForm.nickName,
+    nickNameCheck
+  );
   const [previewImage, setPreviewImage] = useState<string>(
     "https://cdn-icons-png.flaticon.com/512/338/338864.png"
   );
 
-  const onChangeForm = useCallback(
-    (key: keyof RegisterFormType) =>
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setRegisterForm((prevState) => ({
-          ...prevState,
-          [key]: value,
-        }));
-      },
-    [setRegisterForm]
-  );
+  const isSubmitDisabled =
+    isIdDisabled ||
+    isPwDisabled ||
+    isNicknameDisabled ||
+    isPwTwoDisabled ||
+    regiForm.img === "" ||
+    pw !== pwTwo;
+
   const onChangeImg = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files !== null) {
@@ -45,34 +47,15 @@ const RegisterComponent = ({
         // get url from the server and give the img
         if (newFile) {
           setRegisterForm({
-            ...registerForm,
+            ...regiForm,
             img: "dd",
           });
           setPreviewImage(URL.createObjectURL(e.target.files[0]));
         }
       }
     },
-    [registerForm, setRegisterForm]
+    [regiForm, setRegisterForm]
   );
-  useEffect(() => {
-    const isFormValid =
-      registerForm.id !== "" &&
-      registerForm.pw !== "" &&
-      registerForm.pwTwo !== "" &&
-      registerForm.nickName !== "" &&
-      registerForm.img !== "" &&
-      emailCheck(registerForm.id) &&
-      passwordCheck(registerForm.pw) &&
-      passwordCheck(registerForm.pwTwo) &&
-      nickNameCheck(registerForm.nickName) &&
-      registerForm.pw === registerForm.pwTwo;
-
-    setIsSubmitDisabled(!isFormValid);
-    setIsEmailDisabled(registerForm.id === "" || !emailCheck(registerForm.id));
-    setIsNameDisabled(
-      registerForm.nickName === "" || !nickNameCheck(registerForm.nickName)
-    );
-  }, [registerForm]);
 
   return (
     <>
@@ -118,22 +101,21 @@ const RegisterComponent = ({
                   type="text"
                   style="sub"
                   width="w-[70%]"
-                  onChange={onChangeForm("nickName")}
+                  onChange={onChangeNickname}
                 />
                 <FoldButton
                   type="red"
                   width="w-[25%]"
-                  disabled={isNameDisabled}
+                  disabled={isNicknameDisabled}
                 >
                   중복확인
                 </FoldButton>
               </div>
-              {!nickNameCheck(registerForm.nickName) &&
-                registerForm.nickName !== "" && (
-                  <p className="text-xs text-red-500">
-                    2~10글자의 영문 대/소문자, 한글, 숫자만 허용합니다.
-                  </p>
-                )}
+              {!nickNameCheck(nickName) && nickName !== "" && (
+                <p className="text-xs text-red-500">
+                  2~10글자의 영문 대/소문자, 한글, 숫자만 허용합니다.
+                </p>
+              )}
             </div>
           </div>
           {/* 이메일 */}
@@ -144,13 +126,13 @@ const RegisterComponent = ({
                 type="text"
                 style="sub"
                 width="w-[70%]"
-                onChange={onChangeForm("id")}
+                onChange={onChangeId}
               />
-              <FoldButton type="red" width="w-[25%]" disabled={isEmailDisabled}>
+              <FoldButton type="red" width="w-[25%]" disabled={isIdDisabled}>
                 중복확인
               </FoldButton>
             </div>
-            {!emailCheck(registerForm.id) && registerForm.id !== "" && (
+            {!emailCheck(id) && id !== "" && (
               <p className="text-xs text-red-500">이메일 형식만 허용합니다.</p>
             )}
           </div>
@@ -161,9 +143,9 @@ const RegisterComponent = ({
               type="password"
               style="sub"
               height="xsm:h-10 h-14"
-              onChange={onChangeForm("pw")}
+              onChange={onChangePw}
             />
-            {!passwordCheck(registerForm.pw) && registerForm.pw !== "" && (
+            {!passwordCheck(pw) && pw !== "" && (
               <p className="text-xs text-red-500">
                 4~20글자의 영문, 숫자, 특수문자를 모두 포함해야합니다.
               </p>
@@ -176,15 +158,9 @@ const RegisterComponent = ({
               type="password"
               style="sub"
               height="xsm:h-10 h-14"
-              onChange={onChangeForm("pwTwo")}
+              onChange={onChangePwTwo}
             />
-            {!passwordCheck(registerForm.pwTwo) &&
-              registerForm.pwTwo !== "" && (
-                <p className="text-xs text-red-500">
-                  4~20글자의 영문, 숫자, 특수문자를 모두 포함해야합니다.
-                </p>
-              )}
-            {registerForm.pw !== registerForm.pwTwo && (
+            {pw !== pwTwo && (
               <p className="text-xs text-red-500">두 비밀번호가 다릅니다.</p>
             )}
           </div>

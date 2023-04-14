@@ -15,14 +15,13 @@ const AuthComponent = () => {
     id: "",
     nickName: "",
     pw: "",
-    pwTwo: "",
     img: "",
   });
   // 토글 이벤트 핸들러
   const toggleBtnHandler = useCallback(() => {
     setToggle(!toggle);
     setLoginForm({ id: "", pw: "" });
-    setRegisterForm({ id: "", pw: "", pwTwo: "", nickName: "", img: "" });
+    setRegisterForm({ id: "", pw: "", nickName: "", img: "" });
   }, [toggle, setToggle, setLoginForm, setRegisterForm]);
 
   return (
@@ -33,7 +32,7 @@ const AuthComponent = () => {
       {toggle ? (
         <RegisterComponent
           toggleHandler={toggleBtnHandler}
-          registerForm={registerForm}
+          regiForm={registerForm}
           setRegisterForm={setRegisterForm}
         />
       ) : (
