@@ -14,7 +14,7 @@ interface InputProps {
 }
 
 const INPUT_CLASSES = {
-  main: "h-14 text-sm pl-3 focus:outline-red-500",
+  main: "h-14 text-sm pl-3 focus:outline-red-500 xxsm:text-[11px]",
   sub: "text-sm pl-3 focus:outline-red-500 xsm:h-10 xxsm:text-[11px]",
 };
 
