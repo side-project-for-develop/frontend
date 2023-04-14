@@ -59,6 +59,7 @@ const Page = () => {
             height="h-11"
             round="rounded-t-lg"
             border="border-none"
+            focus="outline-none"
           />
           <label className="bg-white py-2 px-4 rounded-b-lg  cursor-pointer hover:bg-gray-100  text-xs">
             이미지 첨부(선택)
@@ -74,6 +75,7 @@ const Page = () => {
             height="h-11"
             round="rounded-t-lg"
             border="border-none"
+            focus="outline-none"
           />
           <label className="bg-white py-2 px-4 rounded-b-lg  cursor-pointer hover:bg-gray-100 text-xs">
             이미지 첨부(선택)
