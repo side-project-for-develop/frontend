@@ -27,7 +27,7 @@ const AuthComponent = () => {
   return (
     <div className="h-screen relative flex flex-col justify-center">
       <div className="py-6 mx-auto xxsm:py-1">
-        <Image src={Logo} alt="tok tok logo" />
+        <Image src={Logo} alt="tok tok logo" priority />
       </div>
       {toggle ? (
         <RegisterComponent
