@@ -15,7 +15,7 @@ export default function RootLayout({
           <main className="bg-red-300">
             <section className="relative max-w-[420px] min-w-[280px] h-screen m-auto overflow-y-scroll bg-white shadow-xl">
               {children}
-              {/* <BottomNav /> */}
+              <BottomNav />
             </section>
           </main>
         </Providers>
