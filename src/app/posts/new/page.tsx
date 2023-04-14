@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/_Materials/Button";
 import { Input } from "@/components/_Materials/Input";
 import { useCallback } from "react";
 
@@ -65,10 +66,15 @@ const Page = () => {
           </label>
         </div>
       </div>
-
-      <button className="w-[calc(100%-4rem)] h-14 flex items-center justify-center bg-white border-2 border-[#DF7272] rounded-md mb-[70px] text-[#DF7272] font-semibold xsm:h-8">
+      <Button
+        type="white"
+        width="w-[calc(100%-4rem)]"
+        round="rounded-md"
+        border="border-2 border-[#DF7272]"
+        margin="mb-[70px]"
+      >
         게시하기
-      </button>
+      </Button>
       <style jsx>{`
         span {
           color: white;
