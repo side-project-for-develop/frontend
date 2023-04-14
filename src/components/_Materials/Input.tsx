@@ -9,17 +9,21 @@ interface InputProps {
   width?: string;
   height?: string;
   type: string;
+  round?: string;
+  border?: string;
 }
 
 const INPUT_CLASSES = {
-  main: "h-14 rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500",
-  sub: "rounded-lg border border-gray-300 text-sm pl-3 focus:outline-red-500 xsm:h-10 xxsm:text-[11px]",
+  main: "h-14 text-sm pl-3 focus:outline-red-500 xxsm:text-[11px]",
+  sub: "text-sm pl-3 focus:outline-red-500 xsm:h-10 xxsm:text-[11px]",
 };
 
 export const Input = ({
   placeholder,
   onChange,
   type,
+  border = "border border-gray-300",
+  round = "rounded-lg",
   width = "w-full",
   height = "",
   style = "main",
@@ -28,7 +32,7 @@ export const Input = ({
   return (
     <input
       type={type}
-      className={`${className} ${width} ${height}`}
+      className={`${className} ${width} ${height} ${round} ${border}`}
       onChange={onChange}
       placeholder={placeholder}
     />

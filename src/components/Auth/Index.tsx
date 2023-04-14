@@ -15,25 +15,24 @@ const AuthComponent = () => {
     id: "",
     nickName: "",
     pw: "",
-    pwTwo: "",
     img: "",
   });
   // 토글 이벤트 핸들러
   const toggleBtnHandler = useCallback(() => {
     setToggle(!toggle);
     setLoginForm({ id: "", pw: "" });
-    setRegisterForm({ id: "", pw: "", pwTwo: "", nickName: "", img: "" });
+    setRegisterForm({ id: "", pw: "", nickName: "", img: "" });
   }, [toggle, setToggle, setLoginForm, setRegisterForm]);
 
   return (
     <div className="h-screen relative flex flex-col justify-center">
       <div className="py-6 mx-auto xxsm:py-1">
-        <Image src={Logo} alt="tok tok logo" />
+        <Image src={Logo} alt="tok tok logo" priority />
       </div>
       {toggle ? (
         <RegisterComponent
           toggleHandler={toggleBtnHandler}
-          registerForm={registerForm}
+          regiForm={registerForm}
           setRegisterForm={setRegisterForm}
         />
       ) : (
