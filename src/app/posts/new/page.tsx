@@ -16,12 +16,14 @@ const Page = () => {
     router.back();
   };
   return (
-    <div className="relative flex flex-col items-center gap-8 min-h-screen overflow-hidden sm:gap-4 xsm:gap-2">
+    <div className="relative flex flex-col items-center gap-8 min-h-screen overflow-hidden">
+      {/* <div className="relative flex flex-col items-center gap-8 min-h-screen overflow-hidden sm:gap-4 xsm:gap-2"> */}
       {/* back button => component with actual link*/}
       <BackBtnComponent clickHandler={onBackHandler} />
       <div className="font-bold mt-8 text-lg xsm:mt-4">게시글작성</div>
 
-      <div className="w-[calc(100%-4rem)] p-10 flex flex-col gap-4 items-center bg-[#DF7272] rounded-3xl sm:p-5 xsm:p-3 xsm:w-[calc(100%-2rem)] xsm:gap-1">
+      <div className="w-[calc(100%-4rem)] p-10 flex flex-col gap-4 items-center bg-[#DF7272] rounded-3xl">
+        {/* <div className="w-[calc(100%-4rem)] p-10 flex flex-col gap-4 items-center bg-[#DF7272] rounded-3xl sm:p-5 xsm:p-3 xsm:w-[calc(100%-2rem)] xsm:gap-1"> */}
         <div className="flex flex-col w-full">
           <span>글작성</span>
           <Input
@@ -45,7 +47,8 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="w-[calc(100%-4rem)] p-10 flex flex-col gap-4 bg-[#DF7272] rounded-3xl sm:p-5 xsm:p-3 xsm:w-[calc(100%-2rem)] xsm:gap-1">
+      <div className="w-[calc(100%-4rem)] p-10 flex flex-col gap-4 bg-[#DF7272] rounded-3xl">
+        {/* <div className="w-[calc(100%-4rem)] p-10 flex flex-col gap-4 bg-[#DF7272] rounded-3xl sm:p-5 xsm:p-3 xsm:w-[calc(100%-2rem)] xsm:gap-1"> */}
         <span className="text-lg">선택지 작성</span>
         <div className="flex flex-col w-full">
           <span>선택지 1</span>
@@ -80,10 +83,10 @@ const Page = () => {
       </div>
       <Button
         type="white"
-        width="w-[calc(100%-4rem)]"
+        width="w-[calc(100%-3rem)]"
         round="rounded-md"
         border="border-2 border-[#DF7272]"
-        margin="mb-[70px]"
+        margin="mb-[80px]"
       >
         게시하기
       </Button>

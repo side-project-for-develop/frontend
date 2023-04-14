@@ -13,10 +13,10 @@ interface ButtonProps {
 }
 
 const BUTTON_CLASSES = {
-  red: "flex items-center justify-centerbg-[#F52E2E] text-white xxsm:text-[16px]",
+  red: "flex items-center justify-center bg-[#F52E2E] text-white xxsm:text-[16px]",
   yellow: "flex items-center justify-center bg-[#EDF117] xxsm:text-[14px]",
   white:
-    "flex items-center justify-center bg-white text-[#DF7272] font-semibold xsm:h-8",
+    "flex items-center justify-center bg-white text-[#DF7272] font-semibold",
 };
 
 export const Button = ({
