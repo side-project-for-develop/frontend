@@ -25,7 +25,7 @@ export const Input = ({
   type,
   focus = "focus:outline-red-500",
   border = "border border-gray-300",
-  round = "rounded-lg",
+  round = "rounded-t-lg rounded-b-lg",
   width = "w-full",
   height = "",
   style = "main",
