@@ -15,30 +15,24 @@ const AuthComponent = () => {
     id: "",
     nickName: "",
     pw: "",
-    pwTwo: "",
+    img: "",
   });
-
   // 토글 이벤트 핸들러
   const toggleBtnHandler = useCallback(() => {
     setToggle(!toggle);
     setLoginForm({ id: "", pw: "" });
-    setRegisterForm({ id: "", pw: "", pwTwo: "", nickName: "" });
+    setRegisterForm({ id: "", pw: "", nickName: "", img: "" });
   }, [toggle, setToggle, setLoginForm, setRegisterForm]);
 
   return (
-    <div className="relative flex flex-col min-h-screen overflow-hidden fade-animation">
-      {/* 로고 */}
-      <Image
-        src={Logo}
-        alt="tok tok logo"
-        className="z-10 mt-[107px] ml-auto mr-auto "
-      />
-
-      {/* 로그인 - 회원가입  toggle */}
+    <div className="h-screen relative flex flex-col justify-center">
+      <div className="py-6 mx-auto xxsm:py-1">
+        <Image src={Logo} alt="tok tok logo" priority />
+      </div>
       {toggle ? (
         <RegisterComponent
           toggleHandler={toggleBtnHandler}
-          registerForm={registerForm}
+          regiForm={registerForm}
           setRegisterForm={setRegisterForm}
         />
       ) : (
@@ -48,15 +42,12 @@ const AuthComponent = () => {
           setLoginForm={setLoginForm}
         />
       )}
-
-      {/* 애니메이션 */}
       <style jsx>{`
         .fade-animation {
           animation-duration: 1s;
           animation-timing-function: ease-in-out;
           animation-name: fade-in;
         }
-
         @keyframes fade-in {
           from {
             opacity: 0;
