@@ -68,7 +68,7 @@ const Page = () => {
       </div>
 
       {/* Sorts */}
-      <div className="w-[95%] flex justify-end mt-3 text-sm">
+      <div className="w-[95%] flex justify-end mt-3 text-sm gap-1">
         {sorts.map((sort) => renderFunction(sort, "sort"))}
       </div>
 
