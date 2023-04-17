@@ -9,7 +9,7 @@ const AddPostComponent = () => {
 
   return (
     <div
-      className="w-16 h-16 absolute bottom-20 right-4 flex justify-center items-center bg-[#FF6868] rounded-full cursor-pointer"
+      className="w-16 h-16 fixed flex justify-center items-center bg-[#FF6868] rounded-full cursor-pointer"
       onClick={handleNavigation}
     >
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-1 bg-white" />
