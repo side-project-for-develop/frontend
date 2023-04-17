@@ -24,10 +24,10 @@ const Page = () => {
       isSelected
         ? type === "category"
           ? "text-white"
-          : "text-black"
+          : "text-black text-[13px]"
         : type === "category"
         ? "text-black"
-        : "text-gray-400"
+        : "text-gray-400 text-[13px]"
     }`;
     const clickHandler =
       type === "category"
