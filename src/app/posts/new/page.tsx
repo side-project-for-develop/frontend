@@ -16,7 +16,7 @@ const Page = () => {
     router.back();
   };
   return (
-    <div className="relative flex flex-col items-center gap-8 min-h-screen overflow-hidden sm:gap-4">
+    <div className="relative flex flex-col items-center gap-6 min-h-screen overflow-hidden sm:gap-4">
       <BackBtnComponent clickHandler={onBackHandler} />
       <div className="font-bold mt-8 text-lg xsm:mt-4">게시글작성</div>
 
