@@ -18,7 +18,9 @@ const Page = () => {
       type === "category" ? selectedCategory === value : selectedSort === value;
     const className = `py-1 px-${
       type === "category" ? 2 : 1
-    } rounded-lg cursor-pointer transition-colors ${
+    } rounded-lg cursor-pointer transition-colors xxsm:w-${
+      type === "category" ? `[35px]` : ""
+    } ${
       isSelected
         ? type === "category"
           ? "text-white"
