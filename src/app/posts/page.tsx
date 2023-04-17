@@ -6,45 +6,34 @@ import SearchIcon from "@/assets/search.svg";
 import { useState } from "react";
 
 type Category = "전체" | "건강" | "IT" | "유머" | "취미";
+type Sorting = "조회순" | "최신순";
 const categories: Category[] = ["전체", "건강", "IT", "유머", "취미"];
+const sorts: Sorting[] = ["조회순", "최신순"];
 
 const Page = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("전체");
   const [selectedSort, setSelectedSort] = useState<string>("조회순");
-  const [value, setValue] = useState<string>("");
-
-  const handleCategoryClick = (category: Category) => {
-    setSelectedCategory(category);
-    setValue(category);
-  };
-
-  const renderCategory = (category: Category) => {
-    const isSelected = selectedCategory === category;
-    const className = `py-1 px-2 rounded-lg cursor-pointer transition-colors ${
-      isSelected ? "text-white" : "text-black "
+  const renderFunction = (value: string, type: "category" | "sort") => {
+    const isSelected =
+      type === "category" ? selectedCategory === value : selectedSort === value;
+    const className = `py-1 px-${
+      type === "category" ? 2 : 1
+    } rounded-lg cursor-pointer transition-colors ${
+      isSelected
+        ? type === "category"
+          ? "text-white"
+          : "text-black"
+        : type === "category"
+        ? "text-black"
+        : "text-gray-400"
     }`;
+    const clickHandler =
+      type === "category"
+        ? () => setSelectedCategory(value)
+        : () => setSelectedSort(value);
     return (
-      <div
-        key={category}
-        className={className}
-        onClick={() => handleCategoryClick(category)}
-      >
-        {category}
-      </div>
-    );
-  };
-  const renderSort = (sort: string) => {
-    const isSelected = selectedSort === sort;
-    const className = `py-1 px-1 rounded-lg cursor-pointer transition-colors ${
-      isSelected ? "text-black" : "text-gray-400"
-    }`;
-    return (
-      <div
-        key={sort}
-        className={className}
-        onClick={() => setSelectedSort(sort)}
-      >
-        {sort}
+      <div key={value} className={className} onClick={clickHandler}>
+        {value}
       </div>
     );
   };
@@ -72,13 +61,13 @@ const Page = () => {
         </div>
         {/* Categories */}
         <div className="flex justify-between w-[80%] items-center mt-4 text-[20px] font-bold font-BMHANNA">
-          {categories.map((category) => renderCategory(category))}
+          {categories.map((category) => renderFunction(category, "category"))}
         </div>
       </div>
 
       {/* Sorts */}
       <div className="w-[95%] flex justify-end mt-3 text-sm">
-        {["조회순", "최신순"].map(renderSort)}
+        {sorts.map((sort) => renderFunction(sort, "sort"))}
       </div>
 
       {/* Cards */}
