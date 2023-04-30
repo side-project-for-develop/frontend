@@ -111,6 +111,192 @@ const Page = () => {
             </div>
           </div>
         </div>
+        {/* Card */}
+        <div
+          className="w-[90%] flex flex-col w-30 border border-[#eceaea] rounded-2xl mt-3 shadow-postBox pb-3 cursor-pointer"
+          onClick={onDetailNavigator}
+        >
+          {/* Category */}
+          <div className="mx-4 mt-4">
+            <span className="bg-[#E37070] text-white px-2 rounded-xl ">
+              유머
+            </span>
+          </div>
+          {/* Title */}
+          <div className="text-sm font-bold mx-4 mt-2 mb-1">
+            만약에 내 애인이 내 친구랑 몰래 바람피다 걸린다면?
+          </div>
+          {/* Subtitle */}
+          <div className="text-xs text-[#918d8d] font-bold mx-4">
+            죽인다 / 한번쯤 용서한다
+          </div>
+          {/* User Profile, Name         How many people joined */}
+          <div className="flex justify-between mx-4 mt-2">
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#B8B8B8] w-5 h-5 rounded-full" />
+              <div className="text-xs">hanghae99</div>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#6e6d6d] w-5 h-5 rounded-full" />
+              <div className="text-[10px] text-[#B8B8B8]">14명 참여</div>
+            </div>
+          </div>
+        </div>
+        {/* Card */}
+        <div
+          className="w-[90%] flex flex-col w-30 border border-[#eceaea] rounded-2xl mt-3 shadow-postBox pb-3 cursor-pointer"
+          onClick={onDetailNavigator}
+        >
+          {/* Category */}
+          <div className="mx-4 mt-4">
+            <span className="bg-[#E37070] text-white px-2 rounded-xl ">
+              유머
+            </span>
+          </div>
+          {/* Title */}
+          <div className="text-sm font-bold mx-4 mt-2 mb-1">
+            만약에 내 애인이 내 친구랑 몰래 바람피다 걸린다면?
+          </div>
+          {/* Subtitle */}
+          <div className="text-xs text-[#918d8d] font-bold mx-4">
+            죽인다 / 한번쯤 용서한다
+          </div>
+          {/* User Profile, Name         How many people joined */}
+          <div className="flex justify-between mx-4 mt-2">
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#B8B8B8] w-5 h-5 rounded-full" />
+              <div className="text-xs">hanghae99</div>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#6e6d6d] w-5 h-5 rounded-full" />
+              <div className="text-[10px] text-[#B8B8B8]">14명 참여</div>
+            </div>
+          </div>
+        </div>
+        {/* Card */}
+        <div
+          className="w-[90%] flex flex-col w-30 border border-[#eceaea] rounded-2xl mt-3 shadow-postBox pb-3 cursor-pointer"
+          onClick={onDetailNavigator}
+        >
+          {/* Category */}
+          <div className="mx-4 mt-4">
+            <span className="bg-[#E37070] text-white px-2 rounded-xl ">
+              유머
+            </span>
+          </div>
+          {/* Title */}
+          <div className="text-sm font-bold mx-4 mt-2 mb-1">
+            만약에 내 애인이 내 친구랑 몰래 바람피다 걸린다면?
+          </div>
+          {/* Subtitle */}
+          <div className="text-xs text-[#918d8d] font-bold mx-4">
+            죽인다 / 한번쯤 용서한다
+          </div>
+          {/* User Profile, Name         How many people joined */}
+          <div className="flex justify-between mx-4 mt-2">
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#B8B8B8] w-5 h-5 rounded-full" />
+              <div className="text-xs">hanghae99</div>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#6e6d6d] w-5 h-5 rounded-full" />
+              <div className="text-[10px] text-[#B8B8B8]">14명 참여</div>
+            </div>
+          </div>
+        </div>
+        {/* Card */}
+        <div
+          className="w-[90%] flex flex-col w-30 border border-[#eceaea] rounded-2xl mt-3 shadow-postBox pb-3 cursor-pointer"
+          onClick={onDetailNavigator}
+        >
+          {/* Category */}
+          <div className="mx-4 mt-4">
+            <span className="bg-[#E37070] text-white px-2 rounded-xl ">
+              유머
+            </span>
+          </div>
+          {/* Title */}
+          <div className="text-sm font-bold mx-4 mt-2 mb-1">
+            만약에 내 애인이 내 친구랑 몰래 바람피다 걸린다면?
+          </div>
+          {/* Subtitle */}
+          <div className="text-xs text-[#918d8d] font-bold mx-4">
+            죽인다 / 한번쯤 용서한다
+          </div>
+          {/* User Profile, Name         How many people joined */}
+          <div className="flex justify-between mx-4 mt-2">
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#B8B8B8] w-5 h-5 rounded-full" />
+              <div className="text-xs">hanghae99</div>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#6e6d6d] w-5 h-5 rounded-full" />
+              <div className="text-[10px] text-[#B8B8B8]">14명 참여</div>
+            </div>
+          </div>
+        </div>
+        {/* Card */}
+        <div
+          className="w-[90%] flex flex-col w-30 border border-[#eceaea] rounded-2xl mt-3 shadow-postBox pb-3 cursor-pointer"
+          onClick={onDetailNavigator}
+        >
+          {/* Category */}
+          <div className="mx-4 mt-4">
+            <span className="bg-[#E37070] text-white px-2 rounded-xl ">
+              유머
+            </span>
+          </div>
+          {/* Title */}
+          <div className="text-sm font-bold mx-4 mt-2 mb-1">
+            만약에 내 애인이 내 친구랑 몰래 바람피다 걸린다면?
+          </div>
+          {/* Subtitle */}
+          <div className="text-xs text-[#918d8d] font-bold mx-4">
+            죽인다 / 한번쯤 용서한다
+          </div>
+          {/* User Profile, Name         How many people joined */}
+          <div className="flex justify-between mx-4 mt-2">
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#B8B8B8] w-5 h-5 rounded-full" />
+              <div className="text-xs">hanghae99</div>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#6e6d6d] w-5 h-5 rounded-full" />
+              <div className="text-[10px] text-[#B8B8B8]">14명 참여</div>
+            </div>
+          </div>
+        </div>
+        {/* Card */}
+        <div
+          className="w-[90%] flex flex-col w-30 border border-[#eceaea] rounded-2xl mt-3 shadow-postBox pb-3 cursor-pointer"
+          onClick={onDetailNavigator}
+        >
+          {/* Category */}
+          <div className="mx-4 mt-4">
+            <span className="bg-[#E37070] text-white px-2 rounded-xl ">
+              유머
+            </span>
+          </div>
+          {/* Title */}
+          <div className="text-sm font-bold mx-4 mt-2 mb-1">
+            만약에 내 애인이 내 친구랑 몰래 바람피다 걸린다면?
+          </div>
+          {/* Subtitle */}
+          <div className="text-xs text-[#918d8d] font-bold mx-4">
+            죽인다 / 한번쯤 용서한다
+          </div>
+          {/* User Profile, Name         How many people joined */}
+          <div className="flex justify-between mx-4 mt-2">
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#B8B8B8] w-5 h-5 rounded-full" />
+              <div className="text-xs">hanghae99</div>
+            </div>
+            <div className="flex gap-1 items-center">
+              <div className="bg-[#6e6d6d] w-5 h-5 rounded-full" />
+              <div className="text-[10px] text-[#B8B8B8]">14명 참여</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
