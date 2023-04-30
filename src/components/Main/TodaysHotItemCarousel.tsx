@@ -14,9 +14,7 @@ const TodaysHotItemCarousel = () => {
     centerPadding: "0px",
     slidesToShow: 1,
     speed: 1000,
-    autoplay: true,
-    autoplaySpeed: 2000,
-
+    autoplay: false,
     touchMove: true,
   };
   return (

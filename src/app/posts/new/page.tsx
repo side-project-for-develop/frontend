@@ -3,24 +3,19 @@
 import { Button } from "@/components/_Materials/Button";
 import { Input } from "@/components/_Materials/Input";
 import { useCallback } from "react";
-import { useRouter } from "next/navigation";
 import BackBtnComponent from "@/components/Common/BackBtnComponent";
 import Str from "@/data/string.json";
 
 const Page = () => {
-  const router = useRouter();
   const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {},
   []);
 
-  const onBackHandler = () => {
-    router.back();
-  };
   return (
     <div className="relative flex flex-col items-center gap-6 min-h-screen overflow-hidden sm:gap-4">
-      <BackBtnComponent clickHandler={onBackHandler} />
+      <BackBtnComponent red />
       <div className="font-bold mt-8 text-lg xsm:mt-4">게시글작성</div>
 
-      <div className="w-[calc(100%-4rem)] p-10 flex flex-col gap-4 items-center bg-[#DF7272] rounded-3xl sm:p-5 sm:w-[calc(100%-2rem)]">
+      <div className="w-[calc(100%-2rem)] p-6 flex flex-col gap-4 items-center bg-[#DF7272] rounded-3xl sm:p-5 sm:w-[calc(100%-2rem)]">
         <div className="flex flex-col w-full">
           <span>글작성</span>
           <Input
@@ -45,7 +40,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="w-[calc(100%-4rem)] p-10 flex flex-col gap-4 bg-[#DF7272] rounded-3xl sm:p-5 sm:w-[calc(100%-2rem)]">
+      <div className="w-[calc(100%-2rem)] px-6 py-10 flex flex-col gap-4 bg-[#DF7272] rounded-3xl sm:p-5 sm:w-[calc(100%-2rem)]">
         <span className="text-lg">선택지 작성</span>
         <div className="flex flex-col w-full">
           <span>선택지 1</span>
@@ -82,7 +77,7 @@ const Page = () => {
       </div>
       <Button
         type="white"
-        width="w-[calc(100%-3rem)]"
+        width="w-[calc(100%-2rem)]"
         round="rounded-md"
         border="border-2 border-[#DF7272]"
         margin="mb-[80px]"
