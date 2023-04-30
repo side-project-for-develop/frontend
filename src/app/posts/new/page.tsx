@@ -3,21 +3,16 @@
 import { Button } from "@/components/_Materials/Button";
 import { Input } from "@/components/_Materials/Input";
 import { useCallback } from "react";
-import { useRouter } from "next/navigation";
 import BackBtnComponent from "@/components/Common/BackBtnComponent";
 import Str from "@/data/string.json";
 
 const Page = () => {
-  const router = useRouter();
   const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {},
   []);
 
-  const onBackHandler = () => {
-    router.back();
-  };
   return (
     <div className="relative flex flex-col items-center gap-6 min-h-screen overflow-hidden sm:gap-4">
-      <BackBtnComponent clickHandler={onBackHandler} />
+      <BackBtnComponent red />
       <div className="font-bold mt-8 text-lg xsm:mt-4">게시글작성</div>
 
       <div className="w-[calc(100%-2rem)] p-6 flex flex-col gap-4 items-center bg-[#DF7272] rounded-3xl sm:p-5 sm:w-[calc(100%-2rem)]">
