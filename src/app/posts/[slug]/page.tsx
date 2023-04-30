@@ -14,7 +14,7 @@ const Page = () => {
       </div>
       <DotMenuComponent />
       {/* Title */}
-      <div className="flex flex-col items-center gap-3 mt-7 xsm:mt-3">
+      <div className="flex flex-col items-center gap-3 mt-4 xsm:mt-2">
         <div className="flex items-center justify-center bg-[#E37070] px-3 rounded-2xl text-white">
           유머
         </div>
