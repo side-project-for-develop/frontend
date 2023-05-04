@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
   font-family: "BM-Hanna";
   font-style: normal;
@@ -11,37 +10,34 @@
 }
 
 @layer base {
-    h1 {
-      @apply text-5xl;
-    }
+  h1 {
+    @apply text-5xl;
+  }
 
-      /* Scroll Hide*/
-    :root{
-      --splash-color: #D84242;
-      -ms-overflow-style: none; 
-      scrollbar-width: none; 
-    }
-    ::-webkit-scrollbar {
-      display: none;
-    }
+  /* Scroll Hide*/
+  :root {
+    --splash-color: #d84242;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
-    button:disabled,
-    button[disabled]{
+  button:disabled,
+  button[disabled] {
     opacity: 50%;
   }
-
 }
-  
+
 @layer components {
-  .example{
-      color: greenyellow;
+  .example {
+    color: greenyellow;
   }
-  
+  .shadow {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 1);
+  }
 }
-  
+
 @layer utilities {
-
 }
-
-
-
