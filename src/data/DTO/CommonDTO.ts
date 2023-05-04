@@ -1,3 +1,3 @@
 export interface ImageDTO {
-  imageFile: FormData;
+  imageFile: any;
 }

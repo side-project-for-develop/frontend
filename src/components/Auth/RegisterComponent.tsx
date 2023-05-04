@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { use, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import Back from "@/assets/backButton_red.svg";
 import { RegisterFormType } from "./AuthTypes";
@@ -10,17 +10,24 @@ import { useInput } from "@/hooks/useInput";
 import usePostNameDupCheck from "@/hooks/query/userPostNameCheck";
 import { ENUM } from "@/data/Enum";
 import usePostEmailDupCheck from "@/hooks/query/userPostEmailCheck copy";
+import usePostImageUpload from "@/hooks/query/commonPostImageUpload";
+import usePostSignUp from "@/hooks/query/userPostSignUp";
+import { useRouter } from "next/navigation";
 
 interface RegisterComponentProps {
   toggleHandler: () => void;
   regiForm: RegisterFormType;
   setRegisterForm: React.Dispatch<React.SetStateAction<RegisterFormType>>;
+  toggle: boolean;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const RegisterComponent = ({
   toggleHandler,
   regiForm,
   setRegisterForm,
+  toggle,
+  setToggle,
 }: RegisterComponentProps) => {
   const [id, onChangeId, isIdDisabled] = useInput(regiForm.id, emailCheck);
   const [pw, onChangePw, isPwDisabled] = useInput(regiForm.pw, passwordCheck);
@@ -34,15 +41,25 @@ const RegisterComponent = ({
   const [previewImage, setPreviewImage] = useState<string>(
     "https://cdn-icons-png.flaticon.com/512/338/338864.png"
   );
-
-  const nameDupCheck = usePostNameDupCheck();
-  const emailDupCheck = usePostEmailDupCheck();
+  const router = useRouter();
+  const nameDupCheckAPI = usePostNameDupCheck();
+  const emailDupCheckAPI = usePostEmailDupCheck();
+  const imageAPI = usePostImageUpload();
+  const signupAPI = usePostSignUp();
 
   const onNameDupCheckHandler = () => {
-    nameDupCheck.mutate({ nickName });
+    nameDupCheckAPI.mutate({ nickName });
   };
   const onEmailDupCheckHandler = () => {
-    emailDupCheck.mutate({ email: id });
+    emailDupCheckAPI.mutate({ email: id });
+  };
+  const onSignUpHandler = () => {
+    signupAPI.mutate({
+      email: id,
+      password: pw,
+      nickname: nickName,
+      profileImage: regiForm.img,
+    });
   };
 
   const isSubmitDisabled =
@@ -55,37 +72,39 @@ const RegisterComponent = ({
     !dupNameCheck ||
     !dupEmailCheck;
 
-  const onChangeImg = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files !== null) {
-        const newFile = e.target.files?.[0];
-        const formData = new FormData();
-        formData.append("file", newFile);
-        // get url from the server and give the img
-        if (newFile) {
-          setRegisterForm({
-            ...regiForm,
-            img: "dd",
-          });
-          setPreviewImage(URL.createObjectURL(e.target.files[0]));
-        }
+  const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files !== null) {
+      const newFile = e.target.files?.[0];
+      const formData = new FormData();
+      formData.append("imageFile", newFile);
+      imageAPI.mutate({ imageFile: formData });
+      if (newFile) {
+        setRegisterForm({
+          ...regiForm,
+          img: imageAPI.data?.data.data,
+        });
+        setPreviewImage(URL.createObjectURL(e.target.files[0]));
       }
-    },
-    [regiForm, setRegisterForm]
-  );
-
+    }
+  };
   useEffect(() => {
-    if (nameDupCheck.data?.data.statusCode === ENUM.STATUS_200)
+    if (nameDupCheckAPI.data?.data.statusCode === ENUM.STATUS_200)
       setDupNameCheck(true);
     else setDupNameCheck(false);
-  }, [nameDupCheck]);
+  }, [nameDupCheckAPI]);
 
   useEffect(() => {
-    if (emailDupCheck.data?.data.statusCode === ENUM.STATUS_200)
+    if (emailDupCheckAPI.data?.data.statusCode === ENUM.STATUS_200)
       setDupEmailCheck(true);
     else setDupEmailCheck(false);
-  }, [emailDupCheck]);
+  }, [emailDupCheckAPI]);
 
+  useEffect(() => {
+    if (signupAPI.isSuccess) {
+      alert("회원가입 성공");
+      setToggle(!toggle);
+    }
+  }, [signupAPI.isSuccess, toggle, setToggle]);
   return (
     <>
       <div className="flex flex-col">
@@ -146,10 +165,10 @@ const RegisterComponent = ({
                   2~10글자의 영문 대/소문자, 한글, 숫자만 허용합니다.
                 </p>
               )}
-              {nameDupCheck?.isError && (
+              {nameDupCheckAPI.data?.data.statusCode === ENUM.STATUS_400 && (
                 <p className="text-xs text-red-500">중복 된 닉네임입니다.</p>
               )}
-              {nameDupCheck?.isSuccess && (
+              {nameDupCheckAPI.data?.data.statusCode === ENUM.STATUS_200 && (
                 <p className="text-xs text-sky-700">사용가능한 닉네임입니다.</p>
               )}
             </div>
@@ -176,10 +195,10 @@ const RegisterComponent = ({
             {!emailCheck(id) && id !== "" && (
               <p className="text-xs text-red-500">이메일 형식만 허용합니다.</p>
             )}
-            {emailDupCheck?.isError && (
+            {emailDupCheckAPI.data?.data.statusCode === ENUM.STATUS_400 && (
               <p className="text-xs text-red-500">중복 된 이메일입니다.</p>
             )}
-            {emailDupCheck?.isSuccess && (
+            {emailDupCheckAPI.data?.data.statusCode === ENUM.STATUS_200 && (
               <p className="text-xs text-sky-700">사용가능한 이메일입니다.</p>
             )}
           </div>
@@ -214,7 +233,11 @@ const RegisterComponent = ({
         </div>
         {/*  buttons */}
         <div className="flex gap-4 w-[calc(100%-64px)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto xsm:mt-4">
-          <Button type="red" disabled={isSubmitDisabled}>
+          <Button
+            type="red"
+            disabled={isSubmitDisabled}
+            onClick={onSignUpHandler}
+          >
             회원가입
           </Button>
         </div>

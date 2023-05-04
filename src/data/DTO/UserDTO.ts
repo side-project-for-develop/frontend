@@ -4,7 +4,7 @@ export interface UserLoginDTO {
 }
 
 export interface UserSignUpDTO extends UserLoginDTO {
-  nickName: string;
+  nickname: string;
   profileImage: string;
 }
 
