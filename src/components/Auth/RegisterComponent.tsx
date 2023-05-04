@@ -7,6 +7,9 @@ import { Button, FoldButton } from "../_Materials/Button";
 import { Input } from "../_Materials/Input";
 import Str from "@/data/string.json";
 import { useInput } from "@/hooks/useInput";
+import usePostNameDupCheck from "@/hooks/query/userPostNameCheck";
+import { ENUM } from "@/data/Enum";
+import usePostEmailDupCheck from "@/hooks/query/userPostEmailCheck copy";
 
 interface RegisterComponentProps {
   toggleHandler: () => void;
@@ -26,9 +29,21 @@ const RegisterComponent = ({
     regiForm.nickName,
     nickNameCheck
   );
+  const [dupNameCheck, setDupNameCheck] = useState(false);
+  const [dupEmailCheck, setDupEmailCheck] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>(
     "https://cdn-icons-png.flaticon.com/512/338/338864.png"
   );
+
+  const nameDupCheck = usePostNameDupCheck();
+  const emailDupCheck = usePostEmailDupCheck();
+
+  const onNameDupCheckHandler = () => {
+    nameDupCheck.mutate({ nickName });
+  };
+  const onEmailDupCheckHandler = () => {
+    emailDupCheck.mutate({ email: id });
+  };
 
   const isSubmitDisabled =
     isIdDisabled ||
@@ -36,7 +51,9 @@ const RegisterComponent = ({
     isNicknameDisabled ||
     isPwTwoDisabled ||
     regiForm.img === "" ||
-    pw !== pwTwo;
+    pw !== pwTwo ||
+    !dupNameCheck ||
+    !dupEmailCheck;
 
   const onChangeImg = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +73,18 @@ const RegisterComponent = ({
     },
     [regiForm, setRegisterForm]
   );
+
+  useEffect(() => {
+    if (nameDupCheck.data?.data.statusCode === ENUM.STATUS_200)
+      setDupNameCheck(true);
+    else setDupNameCheck(false);
+  }, [nameDupCheck]);
+
+  useEffect(() => {
+    if (emailDupCheck.data?.data.statusCode === ENUM.STATUS_200)
+      setDupEmailCheck(true);
+    else setDupEmailCheck(false);
+  }, [emailDupCheck]);
 
   return (
     <>
@@ -107,6 +136,7 @@ const RegisterComponent = ({
                   type="red"
                   width="w-[25%]"
                   disabled={isNicknameDisabled}
+                  onClick={onNameDupCheckHandler}
                 >
                   중복확인
                 </FoldButton>
@@ -115,6 +145,9 @@ const RegisterComponent = ({
                 <p className="text-xs text-red-500">
                   2~10글자의 영문 대/소문자, 한글, 숫자만 허용합니다.
                 </p>
+              )}
+              {nameDupCheck?.isError && (
+                <p className="text-xs text-red-500">중복 된 닉네임입니다.</p>
               )}
             </div>
           </div>
@@ -128,12 +161,20 @@ const RegisterComponent = ({
                 width="w-[70%]"
                 onChange={onChangeId}
               />
-              <FoldButton type="red" width="w-[25%]" disabled={isIdDisabled}>
+              <FoldButton
+                type="red"
+                width="w-[25%]"
+                disabled={isIdDisabled}
+                onClick={onEmailDupCheckHandler}
+              >
                 중복확인
               </FoldButton>
             </div>
             {!emailCheck(id) && id !== "" && (
               <p className="text-xs text-red-500">이메일 형식만 허용합니다.</p>
+            )}
+            {emailDupCheck?.isError && (
+              <p className="text-xs text-red-500">중복 된 이메일입니다.</p>
             )}
           </div>
           {/* 비밀번호 1 */}
