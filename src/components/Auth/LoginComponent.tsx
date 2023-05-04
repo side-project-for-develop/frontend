@@ -3,6 +3,9 @@ import { LoginFormType } from "./AuthTypes";
 import { Button } from "../_Materials/Button";
 import { Input } from "../_Materials/Input";
 import Str from "@/data/string.json";
+import usePostLogin from "@/hooks/query/userPostLogin";
+import { ENUM } from "@/data/Enum";
+import { useRouter } from "next/navigation";
 
 interface LoginComponentProps {
   toggleHandler: () => void;
@@ -16,6 +19,15 @@ const LoginComponent = ({
   setLoginForm,
 }: LoginComponentProps) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+  const loginAPI = usePostLogin();
+  const router = useRouter();
+
+  const onLoginHandler = () => {
+    loginAPI.mutate({
+      email: loginForm.id,
+      password: loginForm.pw,
+    });
+  };
 
   const onChangeId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +50,13 @@ const LoginComponent = ({
     }
   }, [loginForm]);
 
+  useEffect(() => {
+    if (loginAPI.data?.data.statusCode === ENUM.STATUS_200) {
+      alert("로그인 성공");
+      router.push("/main");
+    }
+  }, [loginAPI, router]);
+
   return (
     <>
       <div className="flex flex-col xsm:text-[10px]">
@@ -57,7 +76,11 @@ const LoginComponent = ({
 
         {/*  buttons */}
         <div className="flex gap-4 w-[calc(100%-4rem)] mt-8 text-xl font-bold font-BMHANNA ml-auto mr-auto">
-          <Button type="red" disabled={isButtonDisabled}>
+          <Button
+            type="red"
+            disabled={isButtonDisabled}
+            onClick={onLoginHandler}
+          >
             로그인
           </Button>
           <Button type="yellow">카카오 로그인</Button>
