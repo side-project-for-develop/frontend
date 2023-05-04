@@ -149,6 +149,9 @@ const RegisterComponent = ({
               {nameDupCheck?.isError && (
                 <p className="text-xs text-red-500">중복 된 닉네임입니다.</p>
               )}
+              {nameDupCheck?.isSuccess && (
+                <p className="text-xs text-sky-700">사용가능한 닉네임입니다.</p>
+              )}
             </div>
           </div>
           {/* 이메일 */}
@@ -175,6 +178,9 @@ const RegisterComponent = ({
             )}
             {emailDupCheck?.isError && (
               <p className="text-xs text-red-500">중복 된 이메일입니다.</p>
+            )}
+            {emailDupCheck?.isSuccess && (
+              <p className="text-xs text-sky-700">사용가능한 이메일입니다.</p>
             )}
           </div>
           {/* 비밀번호 1 */}
