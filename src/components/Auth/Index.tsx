@@ -34,6 +34,8 @@ const AuthComponent = () => {
           toggleHandler={toggleBtnHandler}
           regiForm={registerForm}
           setRegisterForm={setRegisterForm}
+          toggle={toggle}
+          setToggle={setToggle}
         />
       ) : (
         <LoginComponent

@@ -10,6 +10,7 @@ interface ButtonProps {
   border?: string;
   round?: string;
   margin?: string;
+  onClick?: () => void;
 }
 
 const BUTTON_CLASSES = {
@@ -28,12 +29,14 @@ export const Button = ({
   border = "border-none",
   round = "rounded-lg",
   disabled = false,
+  onClick,
 }: ButtonProps) => {
   const className = BUTTON_CLASSES[type] ?? "";
   return (
     <button
       className={`${className} ${width} ${height} ${border} ${round} ${margin}`}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </button>
@@ -46,9 +49,16 @@ export const FoldButton = ({
   width,
   height = "",
   disabled = false,
+  onClick,
 }: ButtonProps) => {
   return (
-    <Button type={type} disabled={disabled} width={width} height={height}>
+    <Button
+      type={type}
+      disabled={disabled}
+      width={width}
+      height={height}
+      onClick={onClick}
+    >
       <span className="xxsm:text-[11px]">{children}</span>
     </Button>
   );
