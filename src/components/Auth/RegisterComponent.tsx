@@ -48,7 +48,7 @@ const RegisterComponent = ({
   const signupAPI = usePostSignUp();
 
   const onNameDupCheckHandler = () => {
-    nameDupCheckAPI.mutate({ nickName });
+    nameDupCheckAPI.mutate({ nickname: nickName });
   };
   const onEmailDupCheckHandler = () => {
     emailDupCheckAPI.mutate({ email: id });

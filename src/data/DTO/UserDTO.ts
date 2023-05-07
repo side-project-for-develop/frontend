@@ -9,6 +9,6 @@ export interface UserSignUpDTO extends UserLoginDTO {
 }
 
 export interface DupCheckDTO {
-  nickName?: string;
+  nickname?: string;
   email?: string;
 }
