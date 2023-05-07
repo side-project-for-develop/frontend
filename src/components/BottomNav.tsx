@@ -2,7 +2,7 @@ function BottomNav() {
   return (
     <div className="fixed z-40 bottom-0 w-[420px] sm:w-full h-[70px] bg-white border-2">
       <div className="grid grid-cols-4 gap-x-4 justify-items-center mt-1">
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <svg
             width="40"
             height="40"
@@ -16,7 +16,7 @@ function BottomNav() {
           </svg>
           <p className="text-xs text-center">카테고리</p>
         </div>
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <svg
             width="40"
             height="40"
@@ -32,7 +32,7 @@ function BottomNav() {
           </svg>
           <p className="text-xs text-center">홈</p>
         </div>
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <svg
             width="40"
             height="40"
@@ -47,7 +47,7 @@ function BottomNav() {
           </svg>
           <p className="text-xs text-center">톡톡</p>
         </div>
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <svg
             width="40"
             height="40"
