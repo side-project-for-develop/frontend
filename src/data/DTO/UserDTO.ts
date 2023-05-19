@@ -12,3 +12,7 @@ export interface DupCheckDTO {
   nickname?: string;
   email?: string;
 }
+
+export interface UserDeleteDTO {
+  memberId: string;
+}

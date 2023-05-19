@@ -2,8 +2,15 @@
 import Image from "next/image";
 import Logo_H_W from "@/assets/logo_horizontal_white.svg";
 import Arrow_Right from "@/assets/arrow_right.svg";
+import useDeleteUser from "@/hooks/query/userDelete";
 
 const Page = () => {
+  const deleteUserAPI = useDeleteUser();
+
+  const deleteUserHandler = () => {
+    deleteUserAPI.mutate({ memberId: "kjunho.dev@gmail.com" });
+  };
+
   return (
     <div className="relative overflow-x-hidden h-full bg-[#F7F7F7]">
       {/* Header */}
@@ -32,7 +39,10 @@ const Page = () => {
             />
           </div>
           <div className="w-[calc(100%-70px)] h-1 border-t-2 " />
-          <div className="flex w-full items-center justify-between px-9 cursor-pointer">
+          <div
+            className="flex w-full items-center justify-between px-9 cursor-pointer"
+            onClick={deleteUserHandler}
+          >
             <div>회원탈퇴</div>
             <Image
               src={Arrow_Right}
