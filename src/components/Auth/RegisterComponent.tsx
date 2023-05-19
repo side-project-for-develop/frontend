@@ -1,4 +1,4 @@
-import React, { use, useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Back from "@/assets/backButton_red.svg";
 import { RegisterFormType } from "./AuthTypes";
@@ -13,6 +13,8 @@ import usePostEmailDupCheck from "@/hooks/query/userPostEmailCheck copy";
 import usePostImageUpload from "@/hooks/query/commonPostImageUpload";
 import usePostSignUp from "@/hooks/query/userPostSignUp";
 import { useRouter } from "next/navigation";
+import Modal from "../Common/Modal";
+import Thanks from "@/assets/thanks.svg";
 
 interface RegisterComponentProps {
   toggleHandler: () => void;
@@ -41,11 +43,13 @@ const RegisterComponent = ({
   const [previewImage, setPreviewImage] = useState<string>(
     "https://cdn-icons-png.flaticon.com/512/338/338864.png"
   );
-  const router = useRouter();
+
   const nameDupCheckAPI = usePostNameDupCheck();
   const emailDupCheckAPI = usePostEmailDupCheck();
   const imageAPI = usePostImageUpload();
   const signupAPI = usePostSignUp();
+
+  const [regiSuccessModal, setRegiSuccessModal] = useState(false);
 
   const onNameDupCheckHandler = () => {
     nameDupCheckAPI.mutate({ nickname: nickName });
@@ -101,12 +105,26 @@ const RegisterComponent = ({
 
   useEffect(() => {
     if (signupAPI.isSuccess) {
-      alert("회원가입 성공");
-      setToggle(!toggle);
+      setRegiSuccessModal(true);
+      // alert("회원가입에 성공");
+      // setToggle(!toggle);
     }
   }, [signupAPI.isSuccess, toggle, setToggle]);
   return (
     <>
+      {regiSuccessModal && (
+        <Modal
+          title="회원가입을 환영합니다."
+          sub="TokTok 회원가입 절차가 "
+          sub2="완료 되었습니다."
+          sub3="로그인 후 서비스를"
+          sub4="이용해 주시기 바랍니다."
+          img={Thanks}
+          btnTxt="로그인하러 가기"
+          btnSetter={setToggle}
+          modalSetter={setRegiSuccessModal}
+        />
+      )}
       <div className="flex flex-col">
         {/* 뒤로가기 */}
         <div

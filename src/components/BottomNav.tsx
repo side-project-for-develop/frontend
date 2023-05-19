@@ -1,6 +1,10 @@
+import { MAX_WIDTH_SIZE } from "@/data/Enum";
+
 function BottomNav() {
   return (
-    <div className="fixed z-40 bottom-0 w-[420px] sm:w-full h-[70px] bg-white border-2">
+    <div
+      className={`fixed z-40 bottom-0 w-[${MAX_WIDTH_SIZE}] sm:w-full h-[70px] bg-white border-2`}
+    >
       <div className="grid grid-cols-4 gap-x-4 justify-items-center mt-1">
         <div className="flex flex-col justify-center items-center">
           <svg
