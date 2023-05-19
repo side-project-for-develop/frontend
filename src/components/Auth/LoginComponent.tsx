@@ -52,7 +52,6 @@ const LoginComponent = ({
 
   useEffect(() => {
     if (loginAPI.data?.data.statusCode === ENUM.STATUS_200) {
-      alert("로그인 성공");
       router.push("/main");
     }
   }, [loginAPI, router]);

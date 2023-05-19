@@ -106,8 +106,6 @@ const RegisterComponent = ({
   useEffect(() => {
     if (signupAPI.isSuccess) {
       setRegiSuccessModal(true);
-      // alert("회원가입에 성공");
-      // setToggle(!toggle);
     }
   }, [signupAPI.isSuccess, toggle, setToggle]);
   return (
