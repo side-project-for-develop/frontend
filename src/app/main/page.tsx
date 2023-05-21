@@ -1,11 +1,15 @@
+"use client";
 import Image from "next/image";
 import Logo_H from "@/assets/logo_horizontal.svg";
 import BottomNav from "@/components/BottomNav";
 import PostInfoCard from "@/components/Common/PostInfoCard";
 import ImageCarousel from "@/components/Main/ImageCarousel";
 import TodaysHotItemCarousel from "@/components/Main/TodaysHotItemCarousel";
+import { useAppSelector } from "@/Redux/store";
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
+  const { token, email } = useAppSelector((state) => state.user);
   return (
     <main className="overflow-x-hidden h-full">
       {/* TODO: 컴포넌트 분리 */}
