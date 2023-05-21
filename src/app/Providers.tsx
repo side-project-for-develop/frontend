@@ -1,10 +1,10 @@
-"use client";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Provider } from "react-redux";
 import React from "react";
-import { store } from "@/Redux/store";
+import store from "@/Redux/store";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,11 +15,14 @@ const queryClient = new QueryClient({
   },
 });
 
+const persistor = persistStore(store);
+
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Provider store={store}>{children}</Provider>
-
+      <PersistGate persistor={persistor}>
+        <Provider store={store}>{children}</Provider>
+      </PersistGate>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
