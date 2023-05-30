@@ -6,6 +6,8 @@ import Str from "@/data/string.json";
 import usePostLogin from "@/hooks/query/userPostLogin";
 import { ENUM } from "@/data/Enum";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/Redux/store";
+import { __saveEmail } from "@/Redux/Features/UserSlice";
 
 interface LoginComponentProps {
   toggleHandler: () => void;
@@ -21,8 +23,10 @@ const LoginComponent = ({
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
   const loginAPI = usePostLogin();
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const onLoginHandler = () => {
+    dispatch(__saveEmail({ email: loginForm.id }));
     loginAPI.mutate({
       email: loginForm.id,
       password: loginForm.pw,
@@ -35,6 +39,7 @@ const LoginComponent = ({
     },
     [loginForm, setLoginForm]
   );
+
   const onChangePw = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setLoginForm({ ...loginForm, pw: e.target.value });
@@ -52,7 +57,6 @@ const LoginComponent = ({
 
   useEffect(() => {
     if (loginAPI.data?.data.statusCode === ENUM.STATUS_200) {
-      alert("로그인 성공");
       router.push("/main");
     }
   }, [loginAPI, router]);

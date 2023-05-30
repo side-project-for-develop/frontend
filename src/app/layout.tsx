@@ -5,6 +5,7 @@ import "./globals.css";
 import Providers from "./Providers";
 import BottomNav from "@/components/BottomNav";
 import { usePathname } from "next/navigation";
+import { MAX_WIDTH_SIZE } from "@/data/Enum";
 
 export default function RootLayout({
   children,
@@ -17,7 +18,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <main className="bg-red-300">
-            <section className="relative max-w-[420px] min-w-[280px] h-screen m-auto overflow-y-scroll bg-white shadow-xl">
+            <section
+              className={`relative max-w-[420px] min-w-[280px] h-screen m-auto overflow-y-scroll bg-white shadow-xl`}
+            >
               {children}
               {pathname !== "/" && <BottomNav />}
             </section>

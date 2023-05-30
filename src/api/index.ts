@@ -1,3 +1,4 @@
+import { useAppSelector } from "@/Redux/store";
 import axios from "axios";
 
 const api = axios.create({
@@ -7,6 +8,8 @@ const api = axios.create({
 //  request Interceptor
 api.interceptors.request.use(
   (data) => {
+    const { token } = useAppSelector((state) => state.user);
+    data.headers!.Authorization = "Bearer " + token;
     return data;
   },
   () => {}
